@@ -1,11 +1,50 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
+    <title>c-color</title>
     <meta charset="UTF-8">
-
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入 Bootstrap -->
+    <link href="script/bootstrap.min.css" rel="stylesheet">
+    <!-- 引入main.css -->
+    <link href="style/main.css" rel="stylesheet">
 </head>
-<body>
+<body id="homepage">
+<div class="main">
+    <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><path d="M36 8l4 8h-6l-4-8h-4l4 8h-6l-4-8h-4l4 8h-6l-4-8H8c-2.21 0-3.98 1.79-3.98 4L4 36c0 2.21 1.79 4 4 4h32c2.21 0 4-1.79 4-4V8h-8z"/></svg>
+        <span>Movie-Finder</span>
+    </div>
+    <div class="user-entrance">
+        <span class="glyphicon glyphicon-user"></span>登陆
+        <span>|</span>
+        <span class="glyphicon glyphicon-log-in"></span>注册
+    </div>
+    <div class="index-content">
+        <h1 class="index-title">
+            来，寻找更好的电影.......
+        </h1>
+        <h2 class="index-subtitle">
+            我们一直等着被你发现
+        </h2>
+    </div>
+    <div class="search-bar">
+        <div class="cntr">
+            <div class="cntr-innr">
+                <label class="search" for="inpt_search">
+                    <input id="inpt_search" type="text" placeholder="电影/影人/导演"/>
+                </label>
+                <p>在这里发现更多</p>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- 引入jQuery -->
+<script src="script/jquery.min.js"></script>
+<!-- 引入bootstrap.min.js -->
+<script src="script/bootstrap.min.js"></script>
+<!-- 引入自定义JS -->
+<script src="script/main.js"></script>
 </body>
 </html>
