@@ -107,6 +107,7 @@ div.search-bar {
 
 .search.active,
 .search:hover {
+    left: -4rem;
     width: 48rem;
     margin-right: 0;
 }

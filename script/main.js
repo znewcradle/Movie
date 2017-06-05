@@ -15,5 +15,7 @@ $(function () {
          $("div.cntr-innr p").css("display", "inline-block")
              .addClass("hover");
     });
-
+    /************** 增加动态效果********************************/
+    $("div.main div.index-content").addClass("animated fadeInDown");
+    $("div.main div.search-bar").addClass("animated fadeInUp");
 });
