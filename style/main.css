@@ -17,6 +17,9 @@ a:hover{
     text-decoration: none;
     color: #a1a1a1;
 }
+body{
+    background-color: #f7f8fa;
+}
 body#homepage {
     background-image: url(../images/index2.jpg);
     background-repeat: no-repeat;
@@ -177,26 +180,179 @@ div.modal-btn-footer:hover{
 /**********************************************************************************
 For the search result page
 *******************************************************************************/
+div.header {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #FFFFFF;
+    color: #212121;
+    font-size: 1.875rem;
+    vertical-align: middle;
+    letter-spacing: 0.1rem;
+    padding: 0.875rem;
+    border: 1px solid #eeeeee;
+    box-shadow: 0 0.1rem 0.2rem  #afafaf;
+}
+div.header div{
+    cursor: pointer;
+}
 
-.backOut {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1040;
-  background-color: #000;
-  width: 1300px;
-  height: 1000px;
+div.header-logo{
+    float: left;
 }
-.backOut.fade {
-  filter: alpha(opacity=0);
-  opacity: 0;
+div.header-logo span{
+    position: absolute;
+    left: 6rem;
+    top: 1.45rem;
 }
-.backOut.in {
-  filter: alpha(opacity=50);
-  opacity: 0.5;
+div.header-navigation{
+    color: #212121;
+    display: inline-block;
+    position: absolute;
+    left: 15%;
+    top: 20%;
 }
+div.header-search-bar{
+    display: inline-block;
+    position: absolute;
+    left: 25%;
+    top: 20%;
+}
+div.header-user-entrance{
+    float: right;
+    margin-top: 1.2rem;
+    margin-right: 2rem;
+}
+div.header-logo svg{
+    fill: #212121;
+}
+div.header-logo:hover{
+    color: #afafaf;
+}
+div.header-logo svg:hover{
+    fill: #afafaf;
+}
+div.header-user-entrance, div.header-user-entrance a, div.header-navigation, div.header-navigation a{
+    color: #212121;
+    display: inline-block;
+}
+div.header-user-entrance:hover, div.header-user-entrance :hover, div.header-navigation:hover, div.header-navigation a:hover{
+    color: #afafaf;
+}
+div.header-search-bar{
+    display: inline-block;
+    color: #212121;
+}
+
+div.header-search-bar .search {
+    display: inline-block;
+    position: relative;
+    height: 24px;
+    width: 24px;
+    box-sizing: border-box;
+    margin: 0 12px 7px 8px;
+    padding: 7px 9px 0 9px;
+    border: 3px solid #66757f;
+    border-radius: 30px;
+    -webkit-transition: all 600ms ease;
+    transition: all 600ms ease;
+    cursor: text;
+}
+
+div.header-search-bar .search:after {
+    content: "";
+    position: absolute;
+    width: 3px;
+    height: 18px;
+    top: 14px;
+    left: 20px;
+    background: #66757f;
+    border-radius: 3px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+
+div.header-search-bar label.search.active,
+div.header-search-bar label.search:hover {
+    width: 28rem;
+    left: 0;
+    height: 36px;
+    margin-right: 0;
+    background-color: #f7f8fa;
+}
+
+div.header-search-bar label.search.active:after,
+div.header-search-bar label.search:hover:after {
+    height: 0;
+}
+
+div.header-search-bar .search input {
+    width: 100%;
+    border: none;
+    box-sizing: border-box;
+    font-family: Helvetica;
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: inherit;
+    background: transparent;
+    outline-width: 0;
+    position: relative;
+    bottom: 5px;
+}
+
+div.header-search-bar div.cntr-innr p{
+    display: inline-block;
+}
+div.header-search-bar div.cntr-innr p.hover, div.cntr-nnr p:hover{
+    box-shadow: 0 0.2rem 0 #C8F7E5;
+}
+
+div.main{
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 10.5%;
+    /*height: auto;*/
+    height: 500px;
+
+}
+div.main.fading{
+    -webkit-filter: opacity(0.5);
+    filter: opacity(0.5);
+}
+div.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+
+/*.backOut {*/
+  /*position: fixed;*/
+  /*top: 0;*/
+  /*right: 0;*/
+  /*bottom: 0;*/
+  /*left: 0;*/
+  /*z-index: 1040;*/
+  /*background-color: #000;*/
+  /*width: 1300px;*/
+  /*height: 1000px;*/
+/*}*/
+
+/*.backOut.fade {*/
+  /*filter: alpha(opacity=0);*/
+  /*opacity: 0;*/
+/*}*/
+/*.backOut.in {*/
+  /*filter: alpha(opacity=50);*/
+  /*opacity: 1;*/
+/*}*/
 
 
 
