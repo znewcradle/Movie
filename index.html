@@ -10,17 +10,25 @@
     <link href="style/animate.css" rel="stylesheet">
     <!-- 引入main.css -->
     <link href="style/main.css" rel="stylesheet">
+    <!--  引入normalize.css -->
+    <link href="style/normalize.css" rel="stylesheet">
 </head>
 <body id="homepage">
 <div class="main">
     <div class="logo">
-        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><path d="M36 8l4 8h-6l-4-8h-4l4 8h-6l-4-8h-4l4 8h-6l-4-8H8c-2.21 0-3.98 1.79-3.98 4L4 36c0 2.21 1.79 4 4 4h32c2.21 0 4-1.79 4-4V8h-8z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <path d="M36 8l4 8h-6l-4-8h-4l4 8h-6l-4-8h-4l4 8h-6l-4-8H8c-2.21 0-3.98 1.79-3.98 4L4 36c0 2.21 1.79 4 4 4h32c2.21 0 4-1.79 4-4V8h-8z"></path>
+        </svg>
         <span>Movie-Finder</span>
     </div>
     <div class="user-entrance">
-        <span class="glyphicon glyphicon-user"></span>登陆
+        <a data-toggle="modal" data-target="#loginModal">
+            <span class="glyphicon glyphicon-user"></span>登陆
+        </a>
         <span>|</span>
-        <span class="glyphicon glyphicon-log-in"></span>注册
+        <a data-toggle="modal" data-target="#registerModal">
+            <span class="glyphicon glyphicon-log-in"></span>注册
+        </a>
     </div>
     <div class="index-content">
         <h1 class="index-title">
@@ -40,7 +48,71 @@
             </div>
         </div>
     </div>
+</div> <!-- END: main -->
+
+<!-- BEGIN: modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <div class="modal-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+                        <path d="M36 8l4 8h-6l-4-8h-4l4 8h-6l-4-8h-4l4 8h-6l-4-8H8c-2.21 0-3.98 1.79-3.98 4L4 36c0 2.21 1.79 4 4 4h32c2.21 0 4-1.79 4-4V8h-8z"></path>
+                    </svg>
+                    <span>Movie-Finder</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <span class="glyphicon glyphicon-user input-group-addon"></span>
+                    <input type="text" class="form-control" name="login-name" id="login-name" placeholder="用户名"/>
+                </div>
+                <div class="input-group">
+                    <span class="glyphicon glyphicon-pencil input-group-addon"></span>
+                    <input type="password" class="form-control" name="login-pwd" id="login-pwd" placeholder="您的密码" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="modal-btn-footer">登陆</div>
+            </div>
+        </div><!-- END: /.modal-content -->
+    </div><!-- END:  login-modal -->
 </div>
+
+<div class="modal fade" id="registerModal" tabindex="-2" role="dialog" aria-labelledby="registerLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                 <div class="modal-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+                        <path d="M36 8l4 8h-6l-4-8h-4l4 8h-6l-4-8h-4l4 8h-6l-4-8H8c-2.21 0-3.98 1.79-3.98 4L4 36c0 2.21 1.79 4 4 4h32c2.21 0 4-1.79 4-4V8h-8z"></path>
+                    </svg>
+                    <span>Movie-Finder</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <span class="glyphicon glyphicon-user input-group-addon"></span>
+                    <input type="text" class="form-control" name="register-name" id="register-name" placeholder="用户名"/>
+                </div>
+                <div class="input-group">
+                    <span class="glyphicon glyphicon-pencil input-group-addon"></span>
+                    <input type="password" class="form-control"  name="register-pwd" id="register-pwd" placeholder="您的密码"/>
+                </div>
+                <div class="input-group">
+                    <span class="glyphicon glyphicon-ok input-group-addon"></span>
+                    <input type="password" class="form-control" name="registser-re-pwd" id="register-re-pwd" placeholder="请确认您的密码" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="modal-btn-footer">注册</div>
+            </div>
+        </div><!-- END: modal-content -->
+    </div>
+</div><!-- END: register modal -->
+<!-- END: modal -->
 
 <!-- 引入jQuery -->
 <script src="script/jquery.min.js"></script>
