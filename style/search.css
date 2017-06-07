@@ -173,7 +173,7 @@ div.movie-person{
 table.movie {
     border-top: 1px dotted #aeaeae;
     position: relative;
-    width: 545px;
+    width: 445px;
 }
 table.movie td.poster{
     width: 100px;
@@ -220,9 +220,26 @@ div.tag-list ul{
 div.tag-list ul li{
     list-style: none;
 }
+/**********************************************************************************
+for the director html
+ **************************************************************************************/
+div.main.person{
+    left: 0;
+}
 
-
-
+table.movie.person {
+    display: inline-block;
+    margin-right: 5rem;
+}
+div.movie-person table.movie div.know-more {
+    text-align: right;
+    color: #1b6d85;
+    cursor: pointer;
+    font-size: 1.75rem;
+}
+div.movie-person table.movie div.know-more:hover{
+    color: #5e5e5e;
+}
 
 
 
