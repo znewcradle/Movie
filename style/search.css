@@ -15,6 +15,11 @@ div.header {
     border: 1px solid #eeeeee;
     box-shadow: 0 0.1rem 0.2rem  #afafaf;
 }
+div.header.fixed-header {
+    position: fixed;
+    z-index: 10;
+}
+
 div.header div{
     cursor: pointer;
 }
@@ -136,10 +141,10 @@ for the search page
  *********************************************/
 
 div.main{
-    position: absolute;
+    position: relative;
     text-align: left;
     width: 100%;
-    top: 10.5%;
+    margin-top: 7%;
     height: auto;
 }
 div.main a{
@@ -158,26 +163,27 @@ div.modal {
     background: rgba(255, 255, 255, 0.8);
 }
 
-div.movie-list{
-    position: absolute;
-    width: auto;
-    top: 15.6%;
-    height: auto;
-    left: 20%;
+div.movie-list {
+    margin-left: 20%;
 }
+div.movie-person{
+    margin-left: 20%;
+}
+
 table.movie {
-    border-top: 1px dotted #eeeeee;
+    border-top: 1px dotted #aeaeae;
     position: relative;
+    width: 545px;
 }
 table.movie td.poster{
     width: 100px;
     height: 150px;
 }
-table.movie span.movie-title {
+table.movie span.movie-title, table.movie span.person-title {
     font-size: 1.875rem;
 }
 table.movie div.detail {
-    
+    margin: 1.2rem 0;
 }
 
 table.movie div.allstar{
@@ -197,8 +203,23 @@ li.full-empty-star svg{
     height: 12px;
 }
 
-
-
+div.tag-list {
+    position: fixed;
+    left: 67%;
+    width: 20%;
+    height: auto;
+    /*margin-top: 4rem;*/
+    border-top: 1px solid #aeaeae;
+    box-shadow: -0.1rem -0.1rem 0.1rem #66757f;
+    padding-left: 1rem;
+    top: 26%;
+}
+div.tag-list ul{
+    padding: 0;
+}
+div.tag-list ul li{
+    list-style: none;
+}
 
 
 

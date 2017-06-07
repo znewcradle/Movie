@@ -13,7 +13,7 @@
     <link href="style/main.css" rel="stylesheet">
 </head>
 <body>
-<div class="header">
+<div class="header fixed-header">
     <div class="header-logo">
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
             <path d="M36 8l4 8h-6l-4-8h-4l4 8h-6l-4-8h-4l4 8h-6l-4-8H8c-2.21 0-3.98 1.79-3.98 4L4 36c0 2.21 1.79 4 4 4h32c2.21 0 4-1.79 4-4V8h-8z"></path>
@@ -44,49 +44,428 @@
     </div>
 </div>
 <div class="main">
-    <div class="movie-list">
+    <div class="movie-person">
+        <h3>影人</h3>
         <table class="movie">
-        <tbody>
-        <tr class="item">
-            <td class="poster">
-                <!-- 图片 -->
-                <img src="images/test.jpg" />
-            </td>
-            <td class="content">
-                <div>
-                    <div class="title">
-                        <span class="movie-title">摔跤</span>
-                    </div>
-                    <div class="detail">
-                        <!--信息 -->
-                        <span class="glyphicon glyphicon-time"></span>
-                        <span class="release-date">2007-10-10</span>
-                        <span class="glyphicon glyphicon-bookmark"></span>
-                        <span class="movie-type">剧情/动作</span>
-                        <span class="glyphicon glyphicon-tag"></span>
-                        <span class="movie-actors">演员1/演员2/演员3</span>
-                        <span class="glyphicon glyphicon-tags"></span>
-                        <span class="movie-director">导演1/导演2/导演3</span>
-                    </div>
-                    <div class="star">
-                        <div class="allstar">
-                            <ul>
-                                <li class="glyphicon glyphicon-star"></li>
-                                <li class="glyphicon glyphicon-star"></li>
-                                <li class="glyphicon glyphicon-star"></li>
-                                <li class="full-empty-star"></li>
-                                <li class="glyphicon glyphicon-star-empty"></li>
-                            </ul>
-                            <!-- 星星-->
+            <tbody>
+            <tr class="item">
+                <td class="poster">
+                    <!-- 图片 -->
+                    <img src="images/test.jpg"/>
+                </td>
+                <td class="content">
+                    <div>
+                        <div class="title">
+                            <span class="person-title">摔跤</span>
                         </div>
-                        <span class="rating_nums">6.4 <!-- 分数--></span>
-                        <span class="pl">(65人评价)<!-- 评价人数--></span>
+                        <div class="detail">
+                            <span class="glyphicon glyphicon-facetime-video"></span>
+                            <span class="movie-director">导演</span>
+                        </div>
                     </div>
-                </div>
-            </td>
+                </td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+        <table class="movie">
+            <tbody>
+            <tr class="item">
+                <td class="poster">
+                    <!-- 图片 -->
+                    <img src="images/test.jpg"/>
+                </td>
+                <td class="content">
+                    <div>
+                        <div class="title">
+                            <span class="person-title">摔跤</span>
+                        </div>
+                        <div class="detail">
+                            <span class="glyphicon glyphicon-th-list"></span>
+                            <span class="movie-actors">演员</span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="movie-list">
+        <h3>电影</h3>
+        <table class="movie">
+            <tbody>
+            <tr class="item">
+                <td class="poster">
+                    <!-- 图片 -->
+                    <img src="images/test.jpg"/>
+                </td>
+                <td class="content">
+                    <div>
+                        <div class="title">
+                            <span class="movie-title">摔跤</span>
+                        </div>
+                        <div class="detail">
+                            <!--信息 -->
+                            <span class="glyphicon glyphicon-time"></span>
+                            <span class="release-date">2007-10-10</span>
+                            <span class="glyphicon glyphicon-bookmark"></span>
+                            <span class="movie-type">剧情/动作</span>
+                            <span class="glyphicon glyphicon-facetime-video"></span>
+                            <span class="movie-director">导演1/导演2/导演3</span>
+                            <span class="glyphicon glyphicon-th-list"></span>
+                            <span class="movie-actors">演员1/演员2/演员3</span>
+                        </div>
+                        <div class="star">
+                            <div class="allstar">
+                                <ul>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="full-empty-star"></li>
+                                    <li class="glyphicon glyphicon-star-empty"></li>
+                                </ul>
+                                <!-- 星星-->
+                            </div>
+                            <span class="rating_nums">6.4 <!-- 分数--></span>
+                            <span class="pl">(65人评价)<!-- 评价人数--></span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="movie">
+            <tbody>
+            <tr class="item">
+                <td class="poster">
+                    <!-- 图片 -->
+                    <img src="images/test.jpg"/>
+                </td>
+                <td class="content">
+                    <div>
+                        <div class="title">
+                            <span class="movie-title">摔跤</span>
+                        </div>
+                        <div class="detail">
+                            <!--信息 -->
+                            <span class="glyphicon glyphicon-time"></span>
+                            <span class="release-date">2007-10-10</span>
+                            <span class="glyphicon glyphicon-bookmark"></span>
+                            <span class="movie-type">剧情/动作</span>
+                            <span class="glyphicon glyphicon-facetime-video"></span>
+                            <span class="movie-director">导演1</span>
+                            <span class="glyphicon glyphicon-th-list"></span>
+                            <span class="movie-actors">演员1/演员2/演员3</span>
+                        </div>
+                        <div class="star">
+                            <div class="allstar">
+                                <ul>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="full-empty-star"></li>
+                                    <li class="glyphicon glyphicon-star-empty"></li>
+                                </ul>
+                                <!-- 星星-->
+                            </div>
+                            <span class="rating_nums">6.4 <!-- 分数--></span>
+                            <span class="pl">(65人评价)<!-- 评价人数--></span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="movie">
+            <tbody>
+            <tr class="item">
+                <td class="poster">
+                    <!-- 图片 -->
+                    <img src="images/test.jpg"/>
+                </td>
+                <td class="content">
+                    <div>
+                        <div class="title">
+                            <span class="movie-title">摔跤</span>
+                        </div>
+                        <div class="detail">
+                            <!--信息 -->
+                            <span class="glyphicon glyphicon-time"></span>
+                            <span class="release-date">2007-10-10</span>
+                            <span class="glyphicon glyphicon-bookmark"></span>
+                            <span class="movie-type">剧情/动作</span>
+                            <span class="glyphicon glyphicon-facetime-video"></span>
+                            <span class="movie-director">导演1/导演2/导演3</span>
+                            <span class="glyphicon glyphicon-th-list"></span>
+                            <span class="movie-actors">演员1</span>
+                        </div>
+                        <div class="star">
+                            <div class="allstar">
+                                <ul>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="full-empty-star"></li>
+                                    <li class="glyphicon glyphicon-star-empty"></li>
+                                </ul>
+                                <!-- 星星-->
+                            </div>
+                            <span class="rating_nums">6.4 <!-- 分数--></span>
+                            <span class="pl">(65人评价)<!-- 评价人数--></span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="movie">
+            <tbody>
+            <tr class="item">
+                <td class="poster">
+                    <!-- 图片 -->
+                    <img src="images/test.jpg"/>
+                </td>
+                <td class="content">
+                    <div>
+                        <div class="title">
+                            <span class="movie-title">摔跤</span>
+                        </div>
+                        <div class="detail">
+                            <!--信息 -->
+                            <span class="glyphicon glyphicon-time"></span>
+                            <span class="release-date">2007-10-10</span>
+                            <span class="glyphicon glyphicon-bookmark"></span>
+                            <span class="movie-type">剧情/动作</span>
+                            <span class="glyphicon glyphicon-facetime-video"></span>
+                            <span class="movie-director">导演1</span>
+                            <span class="glyphicon glyphicon-th-list"></span>
+                            <span class="movie-actors">演员1</span>
+                        </div>
+                        <div class="star">
+                            <div class="allstar">
+                                <ul>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="full-empty-star"></li>
+                                    <li class="glyphicon glyphicon-star-empty"></li>
+                                </ul>
+                                <!-- 星星-->
+                            </div>
+                            <span class="rating_nums">6.4 <!-- 分数--></span>
+                            <span class="pl">(65人评价)<!-- 评价人数--></span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="movie">
+            <tbody>
+            <tr class="item">
+                <td class="poster">
+                    <!-- 图片 -->
+                    <img src="images/test.jpg"/>
+                </td>
+                <td class="content">
+                    <div>
+                        <div class="title">
+                            <span class="movie-title">摔跤</span>
+                        </div>
+                        <div class="detail">
+                            <!--信息 -->
+                            <span class="glyphicon glyphicon-time"></span>
+                            <span class="release-date">2007-10-10</span>
+                            <span class="glyphicon glyphicon-bookmark"></span>
+                            <span class="movie-type">剧情/动作</span>
+                            <span class="glyphicon glyphicon-facetime-video"></span>
+                            <span class="movie-director">导演1/导演2/导演3</span>
+                            <span class="glyphicon glyphicon-th-list"></span>
+                            <span class="movie-actors">演员1/演员2/演员3</span>
+                        </div>
+                        <div class="star">
+                            <div class="allstar">
+                                <ul>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="full-empty-star"></li>
+                                    <li class="glyphicon glyphicon-star-empty"></li>
+                                </ul>
+                                <!-- 星星-->
+                            </div>
+                            <span class="rating_nums">6.4 <!-- 分数--></span>
+                            <span class="pl">(65人评价)<!-- 评价人数--></span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="movie">
+            <tbody>
+            <tr class="item">
+                <td class="poster">
+                    <!-- 图片 -->
+                    <img src="images/test.jpg"/>
+                </td>
+                <td class="content">
+                    <div>
+                        <div class="title">
+                            <span class="movie-title">摔跤</span>
+                        </div>
+                        <div class="detail">
+                            <!--信息 -->
+                            <span class="glyphicon glyphicon-time"></span>
+                            <span class="release-date">2007-10-10</span>
+                            <span class="glyphicon glyphicon-bookmark"></span>
+                            <span class="movie-type">剧情/动作</span>
+                            <span class="glyphicon glyphicon-facetime-video"></span>
+                            <span class="movie-director">导演1/导演2/导演3</span>
+                            <span class="glyphicon glyphicon-th-list"></span>
+                            <span class="movie-actors">演员1/演员2/演员3</span>
+                        </div>
+                        <div class="star">
+                            <div class="allstar">
+                                <ul>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="full-empty-star"></li>
+                                    <li class="glyphicon glyphicon-star-empty"></li>
+                                </ul>
+                                <!-- 星星-->
+                            </div>
+                            <span class="rating_nums">6.4 <!-- 分数--></span>
+                            <span class="pl">(65人评价)<!-- 评价人数--></span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="movie">
+            <tbody>
+            <tr class="item">
+                <td class="poster">
+                    <!-- 图片 -->
+                    <img src="images/test.jpg"/>
+                </td>
+                <td class="content">
+                    <div>
+                        <div class="title">
+                            <span class="movie-title">摔跤</span>
+                        </div>
+                        <div class="detail">
+                            <!--信息 -->
+                            <span class="glyphicon glyphicon-time"></span>
+                            <span class="release-date">2007-10-10</span>
+                            <span class="glyphicon glyphicon-bookmark"></span>
+                            <span class="movie-type">剧情/动作</span>
+                            <span class="glyphicon glyphicon-facetime-video"></span>
+                            <span class="movie-director">导演1/导演2/导演3</span>
+                            <span class="glyphicon glyphicon-th-list"></span>
+                            <span class="movie-actors">演员1/演员2/演员3</span>
+                        </div>
+                        <div class="star">
+                            <div class="allstar">
+                                <ul>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="full-empty-star"></li>
+                                    <li class="glyphicon glyphicon-star-empty"></li>
+                                </ul>
+                                <!-- 星星-->
+                            </div>
+                            <span class="rating_nums">6.4 <!-- 分数--></span>
+                            <span class="pl">(65人评价)<!-- 评价人数--></span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="movie">
+            <tbody>
+            <tr class="item">
+                <td class="poster">
+                    <!-- 图片 -->
+                    <img src="images/test.jpg"/>
+                </td>
+                <td class="content">
+                    <div>
+                        <div class="title">
+                            <span class="movie-title">摔跤</span>
+                        </div>
+                        <div class="detail">
+                            <!--信息 -->
+                            <span class="glyphicon glyphicon-time"></span>
+                            <span class="release-date">2007-10-10</span>
+                            <span class="glyphicon glyphicon-bookmark"></span>
+                            <span class="movie-type">剧情/动作</span>
+                            <span class="glyphicon glyphicon-facetime-video"></span>
+                            <span class="movie-director">导演1/导演2/导演3</span>
+                            <span class="glyphicon glyphicon-th-list"></span>
+                            <span class="movie-actors">演员1/演员2/演员3</span>
+                        </div>
+                        <div class="star">
+                            <div class="allstar">
+                                <ul>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="glyphicon glyphicon-star"></li>
+                                    <li class="full-empty-star"></li>
+                                    <li class="glyphicon glyphicon-star-empty"></li>
+                                </ul>
+                                <!-- 星星-->
+                            </div>
+                            <span class="rating_nums">6.4 <!-- 分数--></span>
+                            <span class="pl">(65人评价)<!-- 评价人数--></span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="tag-list">
+        <!-- glyphicon glyphicon-tag -->
+        <!-- glyphicon glyphicon-bookmark -->
+        <h4>在搜索结果中搜索</h4>
+        <h5>年份</h5>
+        <ul class="movie-type">
+            <li>
+                <span class="glyphicon glyphicon-tag"></span>
+                <span>1996</span>
+            </li>
+            <li>
+                <span class="glyphicon glyphicon-tag"></span>
+                <span>1997</span>
+            </li>
+            <li>
+                <span class="glyphicon glyphicon-tag"></span>
+                <span>1998</span>
+            </li>
+        </ul>
+        <h5>类型</h5>
+        <ul class="movie-year">
+            <li>
+                <span class="glyphicon glyphicon-bookmark"></span>
+                <span>喜剧</span>
+            </li>
+            <li>
+                <span class="glyphicon glyphicon-bookmark"></span>
+                <span>动作</span>
+            </li>
+            <li>
+                <span class="glyphicon glyphicon-bookmark"></span>
+                <span>悲剧</span>
+            </li>
+            <li>
+                <span class="glyphicon glyphicon-bookmark"></span>
+                <span>剧情</span>
+            </li>
+        </ul>
     </div>
 </div>
 
