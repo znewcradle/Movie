@@ -30,6 +30,14 @@
             <span class="glyphicon glyphicon-log-in"></span>注册
         </a>
     </div>
+    <div class="user-entrance after-login" hidden>
+        <span class="user-profile">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><path d="M24 24c4.42 0 8-3.59 8-8 0-4.42-3.58-8-8-8s-8 3.58-8 8c0 4.41 3.58 8 8 8zm0 4c-5.33 0-16 2.67-16 8v4h32v-4c0-5.33-10.67-8-16-8z"></path></svg>
+        </span>
+        <span class="user-name">
+        </span>
+        <span class="glyphicon glyphicon-log-out log-out"></span>
+    </div>
     <div class="index-content">
         <h1 class="index-title">
             来，寻找更好的电影.......
@@ -72,9 +80,10 @@
                     <span class="glyphicon glyphicon-pencil input-group-addon"></span>
                     <input type="password" class="form-control" name="login-pwd" id="login-pwd" placeholder="您的密码" />
                 </div>
+                <div class="error-message login" hidden></div>
             </div>
             <div class="modal-footer">
-                <div class="modal-btn-footer">登陆</div>
+                <div class="modal-btn-footer" id="login_btn">登陆</div>
             </div>
         </div><!-- END: /.modal-content -->
     </div><!-- END:  login-modal -->
@@ -105,9 +114,10 @@
                     <span class="glyphicon glyphicon-ok input-group-addon"></span>
                     <input type="password" class="form-control" name="registser-re-pwd" id="register-re-pwd" placeholder="请确认您的密码" />
                 </div>
+                <div class="error-message register" hidden></div>
             </div>
             <div class="modal-footer">
-                <div class="modal-btn-footer">注册</div>
+                <div class="modal-btn-footer" id="register_btn">注册</div>
             </div>
         </div><!-- END: modal-content -->
     </div>

@@ -42,6 +42,14 @@
             <span class="glyphicon glyphicon-log-in"></span>注册
         </a>
     </div>
+     <div class="heading user-entrance after-login" hidden>
+        <span class="user-profile">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><path d="M24 24c4.42 0 8-3.59 8-8 0-4.42-3.58-8-8-8s-8 3.58-8 8c0 4.41 3.58 8 8 8zm0 4c-5.33 0-16 2.67-16 8v4h32v-4c0-5.33-10.67-8-16-8z"></path></svg>
+        </span>
+        <span class="user-name">
+        </span>
+        <span class="glyphicon glyphicon-log-out log-out"></span>
+    </div>
 </div>
 <div class="main">
     <div class="movie-person">
@@ -489,23 +497,23 @@
                 </div>
                 <div class="input-group">
                     <span class="glyphicon glyphicon-pencil input-group-addon"></span>
-                    <input type="password" class="form-control" name="login-pwd" id="login-pwd" placeholder="您的密码"/>
+                    <input type="password" class="form-control" name="login-pwd" id="login-pwd" placeholder="您的密码" />
                 </div>
+                <div class="error-message login" hidden></div>
             </div>
             <div class="modal-footer">
-                <div class="modal-btn-footer">登陆</div>
+                <div class="modal-btn-footer" id="login_btn">登陆</div>
             </div>
         </div><!-- END: /.modal-content -->
     </div><!-- END:  login-modal -->
 </div>
 
-<div class="modal fade" id="registerModal" tabindex="-2" role="dialog" aria-labelledby="registerLabel"
-     aria-hidden="true">
+<div class="modal fade" id="registerModal" tabindex="-2" role="dialog" aria-labelledby="registerLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <div class="modal-logo">
+                 <div class="modal-logo">
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
                         <path d="M36 8l4 8h-6l-4-8h-4l4 8h-6l-4-8h-4l4 8h-6l-4-8H8c-2.21 0-3.98 1.79-3.98 4L4 36c0 2.21 1.79 4 4 4h32c2.21 0 4-1.79 4-4V8h-8z"></path>
                     </svg>
@@ -519,27 +527,31 @@
                 </div>
                 <div class="input-group">
                     <span class="glyphicon glyphicon-pencil input-group-addon"></span>
-                    <input type="password" class="form-control" name="register-pwd" id="register-pwd"
-                           placeholder="您的密码"/>
+                    <input type="password" class="form-control"  name="register-pwd" id="register-pwd" placeholder="您的密码"/>
                 </div>
                 <div class="input-group">
                     <span class="glyphicon glyphicon-ok input-group-addon"></span>
-                    <input type="password" class="form-control" name="registser-re-pwd" id="register-re-pwd"
-                           placeholder="请确认您的密码"/>
+                    <input type="password" class="form-control" name="registser-re-pwd" id="register-re-pwd" placeholder="请确认您的密码" />
                 </div>
+                <div class="error-message register" hidden></div>
             </div>
             <div class="modal-footer">
-                <div class="modal-btn-footer">注册</div>
+                <div class="modal-btn-footer" id="register_btn">注册</div>
             </div>
         </div><!-- END: modal-content -->
     </div>
 </div><!-- END: register modal -->
 <!-- END: modal -->
+
 <!-- 引入jQuery -->
 <script src="script/jquery.min.js"></script>
 <!-- 引入bootstrap.min.js -->
 <script src="script/bootstrap.min.js"></script>
 <!-- 引入自定义JS -->
 <script src="script/main.js"></script>
+<script>
+    var objKey = getParams();
+
+</script>
 </body>
 </html>

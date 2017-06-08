@@ -135,6 +135,13 @@ div.header-search-bar div.cntr-innr p{
 div.header-search-bar div.cntr-innr p.hover, div.cntr-nnr p:hover{
     box-shadow: 0 0.2rem 0 #C8F7E5;
 }
+/******************for the user after logining ***********************/
+div.heading.user-entrance.after-login {
+    padding: 0;
+}
+div.heading.user-entrance.after-login span.user-profile svg{
+    fill: #212121;
+}
 
 /**********************************************
 for the search page
