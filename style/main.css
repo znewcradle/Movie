@@ -10,8 +10,11 @@ For the index page
   url('../script/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 /************replace the default style **********/
-a {
+body#homepage a {
     color: white;
+}
+a {
+    color: inherit;
 }
 a:hover{
     text-decoration: none;
