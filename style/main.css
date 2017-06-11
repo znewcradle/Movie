@@ -179,7 +179,6 @@ div.cntr-innr p.hover, div.cntr-nnr p:hover{
     box-shadow: 0 0.2rem 0 #C8F7E5;
 }
 /********登陆注册模态框 *******************/
-
 div.modal-logo svg{
     fill: #444444;
     width: 24px;
@@ -216,6 +215,7 @@ span.log-out {
 span.log-out:hover{
     color: rgba(205, 0, 0, 0.8);
 }
+
 
 
 
