@@ -3,9 +3,9 @@
  */
 $(function () {
     /******************检测用户是否登陆 *****************/
-    var token  = localStorage.getItem("token");
-    var token_type =  localStorage.getItem("token_type");
-    if(token && token_type) {
+    var token = localStorage.getItem("token");
+    var token_type = localStorage.getItem("token_type");
+    if (token && token_type) {
         $("div.user-entrance").hide();
         $("div.user-entrance.after-login").show();
 
@@ -14,7 +14,7 @@ $(function () {
         $("span.user-name").text(localStorage.getItem("name"));
     }
     /*******************注销 *****************************/
-    $("div.user-entrance.after-login span.log-out").click(function(){
+    $("div.user-entrance.after-login span.log-out").click(function () {
         localStorage.removeItem("token");
         localStorage.removeItem("name");
         localStorage.removeItem("token_type");
@@ -84,7 +84,7 @@ $(function () {
             }
         });
     };
-    $("#login_btn").click(function(){
+    $("#login_btn").click(function () {
         var name = $("#login-name").val();
         var pwd = $("#login-pwd").val();
         login(name, pwd);
@@ -129,10 +129,10 @@ $(function () {
     });
 
     /********************************搜索事件***********************************/
-    $("input#inpt_search").bind('keydown', function(event){
-        if(event.keyCode === 13){
-            var keyword =  $(this).val();
-            if(! keyword) {
+    $("input#inpt_search").bind('keydown', function (event) {
+        if (event.keyCode === 13) {
+            var keyword = $(this).val();
+            if (!keyword) {
                 return;
             }
             // keyword = encodeURIComponent(keyword);
@@ -141,6 +141,18 @@ $(function () {
             window.location.href = connectURL("search-result.html", "key", keyword);
         }
     });
+    //loading effect
+    function loadingEffect() {
+        var loading = $('#fountainG');
+        loading.hide();
+        $(document).ajaxStart(function () {
+            loading.show();
+        }).ajaxStop(function () {
+            loading.hide();
+        });
+    }
+
+   // loadingEffect();
 });
 
 function connectURL(url, key, value) {
@@ -152,10 +164,10 @@ function connectURL(url, key, value) {
 function getParams() {
     var search = decodeURI(location.search);
     var theRequest = {};
-    if(search.indexOf("?") != -1) {
+    if (search.indexOf("?") != -1) {
         var str = search.substr(1);
         strs = str.split("&");
-        for(var i = 0; i < strs.length; ++ i) {
+        for (var i = 0; i < strs.length; ++i) {
             var pairs = strs[i].split("=");
             theRequest[pairs[0]] = decodeURIComponent(pairs[1]);
         }
