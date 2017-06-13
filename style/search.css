@@ -208,12 +208,25 @@ table.movie div.allstar ul li{
 div.allstar ul{
     padding: 0;
 }
+li.full-empty-star {
+    list-style: none;
+    display: inline-block;
+}
 li.full-empty-star svg{
     fill: gold;
     width: 20px;
     height: 12px;
 }
-
+li.glyphicon.glyphicon-star {
+    color: gold;
+    list-style: none;
+    display: inline-block;
+}
+li.glyphicon.glyphicon-star-empty {
+    color: gold;
+    list-style: none;
+    display: inline-block;
+}
 div.tag-list {
     position: fixed;
     left: 67%;
