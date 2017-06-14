@@ -1,0 +1,68 @@
+/****************************************************************************
+for the movie page
+**************************************************************************/
+div.main>div{
+    width: 60%;
+    margin: 0 20%;
+}
+div.movie-info {
+    border-bottom: 1px dotted #eeeeee;
+}
+div.movie-info>div{
+    display: flex;
+    flex-direction: row;
+}
+div.movie-info div.img-poster {
+    padding-right: 4%;
+}
+div.movie-info div{
+    margin-top: 1.5rem;
+}
+div.info ul{
+    padding: 0;
+}
+div.info ul li{
+    list-style-type: none;
+}
+div.info ul li span {
+    margin-right: 1.2rem;
+}
+div.info ul li ul, div.info ul li h4 {
+    display: inline-block;
+}
+div.function-bar span.glyphicon {
+    padding-right: 0.5rem;
+}
+div.function-bar span.glyphicon.glyphicon-stats {
+    padding-left: 1.5rem;
+}
+div.function-bar ul {
+    display: inline-block;
+    padding: 0;
+    padding-left: 0.2rem;
+}
+
+div.comment ul{
+    display: inline-block;
+    padding: 0;
+}
+
+/************************推荐电影列表**************************/
+div.recommend-movie ul {
+    padding: 0;
+}
+div.recommend-movie li.movie-row ul {
+    margin-bottom: 3.5rem;
+}
+div.recommend-movie ul li {
+    list-style: none;
+}
+div.recommend-movie ul li.movie-row ul li {
+    list-style: none;
+    display: inline-block;
+    margin-right: 3rem;
+}
+div.recommend-movie ul li.movie-row ul li a{
+    position: absolute;
+    margin: 1px 1.2rem;
+}
