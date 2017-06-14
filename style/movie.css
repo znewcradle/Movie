@@ -42,10 +42,6 @@ div.function-bar ul {
     padding-left: 0.2rem;
 }
 
-div.comment ul{
-    display: inline-block;
-    padding: 0;
-}
 
 /************************推荐电影列表**************************/
 div.recommend-movie ul {
@@ -66,3 +62,39 @@ div.recommend-movie ul li.movie-row ul li a{
     position: absolute;
     margin: 1px 1.2rem;
 }
+/*****************************评论列表***********************/
+div.comment {
+    border-top: 1px dotted #eeeeee;
+    margin-bottom: 4.5rem;
+}
+div.comment ul{
+    display: inline-block;
+    padding: 0;
+}
+div.comment div.comment-footer {
+    float: right;
+    margin-right: 5rem;
+}
+div.comment div.comment-footer span.glyphicon {
+    margin-right: 1.2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
