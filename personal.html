@@ -1,10 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Personal Homepage</title>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入 Bootstrap -->
+    <link href="script/bootstrap.min.css" rel="stylesheet">
+    <!-- 引入动画CSS -->
+    <link href="style/animate.css" rel="stylesheet">
+    <!-- 引入main.css -->
+    <link href="style/search.css" rel="stylesheet">
+    <link href="style/main.css" rel="stylesheet">
+    <link href="style/movie.css" rel="stylesheet">
+    <link href="style/person.css" rel="stylesheet">
 </head>
 <body>
+    <div class="header fixed-header">
+    <div class="header-logo">
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+                <path d="M36 8l4 8h-6l-4-8h-4l4 8h-6l-4-8h-4l4 8h-6l-4-8H8c-2.21 0-3.98 1.79-3.98 4L4 36c0 2.21 1.79 4 4 4h32c2.21 0 4-1.79 4-4V8h-8z"></path>
+            </svg>
+            <span>Movie-Finder</span>
+        </a>
+    </div>
+    <div class="header-navigation">
+        <a>TOP榜单</a>
+        <a>类型</a>
+    </div>
+    <div class="header-search-bar">
+        <div class="cntr">
+            <div class="cntr-innr">
+                <label class="search" for="inpt_search">
+                    <input id="inpt_search" type="text" placeholder="电影/影人/导演"/>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="header-user-entrance">
+        <a data-toggle="modal" data-target="#loginModal">
+            <span class="glyphicon glyphicon-user"></span>登陆
+        </a>
+        <span>|</span>
+        <a data-toggle="modal" data-target="#registerModal">
+            <span class="glyphicon glyphicon-log-in"></span>注册
+        </a>
+    </div>
+    <div class="heading user-entrance after-login" hidden>
+        <span class="user-profile">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><path
+                    d="M24 24c4.42 0 8-3.59 8-8 0-4.42-3.58-8-8-8s-8 3.58-8 8c0 4.41 3.58 8 8 8zm0 4c-5.33 0-16 2.67-16 8v4h32v-4c0-5.33-10.67-8-16-8z"></path></svg>
+        </span>
+        <span class="user-name">
+        </span>
+        <span class="glyphicon glyphicon-log-out log-out"></span>
+    </div>
+</div>
+    <!-- 用户名，打过分的电影，收藏的电影，评论过的电影-->
+    <div class="main">
 
+    </div>
 </body>
 </html>
