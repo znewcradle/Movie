@@ -141,18 +141,21 @@ $(function () {
             window.location.href = connectURL("search-result.html", "key", keyword);
         }
     });
+    /**************************切换背景图片**************************************/
+
     //loading effect
     function loadingEffect() {
-        var loading = $('#fountainG');
-        loading.hide();
+        var $search_loading = $("div.search-loading");
         $(document).ajaxStart(function () {
-            loading.show();
+            $search_loading.show();
+            $("div.main.loading div[class^='movie-']").hide();
         }).ajaxStop(function () {
-            loading.hide();
+            $search_loading.hide();
+            $("div.main.loading div[class^='movie-']").show();
         });
     }
 
-   // loadingEffect();
+   loadingEffect();
 });
 
 function connectURL(url, key, value) {
@@ -174,3 +177,40 @@ function getParams() {
     }
     return theRequest;
 }
+
+
+function addAllLinks() {
+    $("span.person-title").click(function(){
+
+    });
+}
+//ajax to director
+function goToDirectors(){
+
+}
+//ajax to actor
+function goToAcotrs() {
+
+}
+//ajax to movie
+function goToMovies() {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
