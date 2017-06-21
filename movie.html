@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:maxlength="http://www.w3.org/1999/xhtml">
 <head>
     <title>Movies</title>
     <meta charset="UTF-8">
@@ -12,6 +12,8 @@
     <link href="style/search.css" rel="stylesheet">
     <link href="style/main.css" rel="stylesheet">
     <link href="style/movie.css" rel="stylesheet">
+    <!-- 引入vue.js -->
+    <script src="script/vue.min.js"></script>
 </head>
 <body>
 <div class="header fixed-header">
@@ -57,49 +59,74 @@
 </div>
 
 <div class="carousel-inner movie-background">
-        <div class="item active animated fadeInUp">
-            <img src="images/movie.jpeg" alt="movie"/>
-        </div>
+    <div class="item active animated fadeInUp">
+        <img src="images/movie.jpeg" alt="movie"/>
+    </div>
 </div>
 
 <div class="movie main">
     <div class="movie-info">
-        <h1>少年派的奇幻漂流 Life of PI</h1>
+        <h1>{{ name }}</h1>
         <div>
             <div class="img-poster">
-                <img src="images/test.jpg"/>
+                <img src="images/test.webp"/>
             </div>
             <div class="info">
                 <ul>
                     <li>
-                        <span class="glyphicon glyphicon-facetime-video"></span>
-                        <span class="movie-director">李安</span>
+                        <span class="glyphicon glyphicon-facetime-video"></span>导演
+                        <span class="movie-director">
+                            <template v-for="(director, index) in directors">
+                                <span class="person" v-bind:data-director="director.directorId"
+                                      v-if="index != directors.length - 1"> {{ director.directorName }}/</span>
+                                <span class="person" v-bind:data-director="director.directorId" v-else>{{ director.directorName }}</span>
+                            </template>
+                        </span>
                     </li>
                     <li>
-                        <span class="glyphicon glyphicon-heart"></span>
-                        <span class="movie-star">苏拉·沙玛</span>
+                        <span class="glyphicon glyphicon-heart"></span>主演
+                        <span class="movie-star">
+                            <template v-for="(star, index) in starActors">
+                                <span class="person" v-bind:data-actor="star.actorId"
+                                      v-if="index != starActors.length - 1">{{ star.actorName }}/</span>
+                                <span class="person" v-bind:data-actor="star.actorId" v-else>{{ star.actorName }}</span>
+                            </template>
+                        </span>
                     </li>
                     <li>
-                        <span class="glyphicon glyphicon-th-large"></span>
-                        <span class="movie-actor">塔布</span>
+                        <span class="glyphicon glyphicon-th-large"></span>参演
+                        <span class="movie-actor">
+                            <template v-for="(actor, index) in ordActors">
+                                <span class="person" v-bind:data-actor="actor.actorId"
+                                      v-if="index != ordActors.length - 1">{{ actor.actorName }}/</span>
+                                <span class="person" v-bind:data-actor="actor.actorId"
+                                      v-else>{{ actor.actorName }}</span>
+                            </template>
+                        </span>
                     </li>
                     <li>
-                        <span class="glyphicon glyphicon-tags"></span>
-                        <span class="movie-tag">剧情/奇幻/冒险</span>
+                        <span class="glyphicon glyphicon-tags"></span>类型
+                        <span class="movie-type">
+                            <template v-for="(tag, index) in genres">
+                                <span v-if="index != genres.length - 1">{{  tag }} /</span>
+                                <span v-else>{{ tag }}</span>
+                            </template>
+                        </span>
                     </li>
                     <li>
-                        <span class="glyphicon glyphicon-time"></span>
-                        <span class="movie-date">2012-11-12</span>
+                        <span class="glyphicon glyphicon-time"></span>发行日期
+                        <span class="movie-date">{{ releaseDate | formatDate}}</span>
                     </li>
                     <li>
                         <h4>电影评分</h4>
-                        <ul>
-                            <li class="glyphicon glyphicon-star"></li>
-                            <li class="glyphicon glyphicon-star"></li>
-                            <li class="glyphicon glyphicon-star"></li>
-                            <li class="full-empty-star"></li>
-                            <li class="glyphicon glyphicon-star-empty"></li>
+                        <ul class="allstar">
+                            <!--<li class="glyphicon glyphicon-star"></li>-->
+                            <!--<li class="glyphicon glyphicon-star"></li>-->
+                            <!--<li class="glyphicon glyphicon-star"></li>-->
+                            <!--<li class="full-empty-star"></li>-->
+                            <!--<li class="glyphicon glyphicon-star-empty"></li>-->
                         </ul>
+                        <span class="rating_nums">{{ score }}<!-- 分数--></span>
                     </li>
                 </ul>
             </div>
@@ -107,68 +134,35 @@
     </div>
     <div class="function-bar">
         <span class="glyphicon glyphicon-pencil"></span>
-        <span>写短评</span>
+        <span class="write-btn" data-toggle="modal" data-target="#reviewModal">写短评</span>
         <span class="glyphicon glyphicon-stats"></span>
-        <span>打分</span>
-        <ul>
+        <span class="score-btn">打分</span>
+        <ul class="score">
             <li class="glyphicon glyphicon-star-empty"></li>
             <li class="glyphicon glyphicon-star-empty"></li>
             <li class="glyphicon glyphicon-star-empty"></li>
             <li class="glyphicon glyphicon-star-empty"></li>
             <li class="glyphicon glyphicon-star-empty"></li>
         </ul>
+        <span class="score-final"></span>
     </div>
     <div class="recommend-movie">
         <h3>喜欢这部电影的人也喜欢······</h3>
-        <ul>
-            <li class="movie-row">
-                <ul>
-                    <li>
-                        <img src="images/test.jpg"/>
-                        <a>电影名</a>
-                    </li>
-                    <li>
-                        <img src="images/test.jpg"/>
-                        <a>电影名</a>
-                    </li>
-                    <li>
-                        <img src="images/test.jpg"/>
-                        <a>电影名</a>
-                    </li>
-                    <li>
-                        <img src="images/test.jpg"/>
-                        <a>电影名</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="movie-row">
-                <ul>
-                    <li>
-                    <img src="images/test.jpg"/>
-                    <a>电影名</a>
-                    </li>
-                    <li>
-                        <img src="images/test.jpg"/>
-                        <a>电影名</a>
-                    </li>
-                    <li>
-                        <img src="images/test.jpg"/>
-                        <a>电影名</a>
-                    </li>
-                    <li>
-                        <img src="images/test.jpg"/>
-                        <a>电影名</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+        <table>
+            <tbody>
+                <tr>
+                </tr>
+                <tr>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <div class="comment-zone">
-        <h3>少年派的奇幻漂流的短评······</h3>
-        <h5>热门/最新</h5>
-        <div class="comment">
+    <div class="comment-zone" id="comment-zone">
+        <h3><span class="movie_title"></span>的短评······</h3>
+        <h5><span class="hot-button">热门</span>/<span class="new-button">最新</span></h5>
+        <div class="comment" v-for="review in allReviews">
             <div class="comment-header">
-                <span>用户名</span>
+                <span>{{ review.userName }}</span>
                 <span class="glyphicon glyphicon-stats"></span>
                 <span>打分</span>
                 <ul>
@@ -180,116 +174,12 @@
                 </ul>
             </div>
             <div class="comment-content">
-                现实与奇幻之间完美交融，用奇幻之美抵挡现实的残酷，守住人性的光辉。
+                {{ review.description }}
             </div>
             <div class="comment-footer">
                 up<span class="glyphicon glyphicon-thumbs-up"></span>down
                 <span class="glyphicon glyphicon-thumbs-down"></span>
-            </div>
-        </div>
-        <div class="comment">
-            <div class="comment-header">
-                <span>用户名</span>
-                <span class="glyphicon glyphicon-stats"></span>
-                <span>打分</span>
-                <ul>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                </ul>
-            </div>
-            <div class="comment-content">
-                现实与奇幻之间完美交融，用奇幻之美抵挡现实的残酷，守住人性的光辉。
-            </div>
-            <div class="comment-footer">
-                up<span class="glyphicon glyphicon-thumbs-up"></span>down
-                <span class="glyphicon glyphicon-thumbs-down"></span>
-            </div>
-        </div>
-        <div class="comment">
-            <div class="comment-header">
-                <span>用户名</span>
-                <span class="glyphicon glyphicon-stats"></span>
-                <span>打分</span>
-                <ul>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                </ul>
-            </div>
-            <div class="comment-content">
-                现实与奇幻之间完美交融，用奇幻之美抵挡现实的残酷，守住人性的光辉。
-            </div>
-            <div class="comment-footer">
-                up<span class="glyphicon glyphicon-thumbs-up"></span>down
-                <span class="glyphicon glyphicon-thumbs-down"></span>
-            </div>
-        </div>
-        <div class="comment">
-            <div class="comment-header">
-                <span>用户名</span>
-                <span class="glyphicon glyphicon-stats"></span>
-                <span>打分</span>
-                <ul>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                </ul>
-            </div>
-            <div class="comment-content">
-                现实与奇幻之间完美交融，用奇幻之美抵挡现实的残酷，守住人性的光辉。
-            </div>
-            <div class="comment-footer">
-                up<span class="glyphicon glyphicon-thumbs-up"></span>down
-                <span class="glyphicon glyphicon-thumbs-down"></span>
-            </div>
-        </div>
-        <div class="comment">
-            <div class="comment-header">
-                <span>用户名</span>
-                <span class="glyphicon glyphicon-stats"></span>
-                <span>打分</span>
-                <ul>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                </ul>
-            </div>
-            <div class="comment-content">
-                现实与奇幻之间完美交融，用奇幻之美抵挡现实的残酷，守住人性的光辉。
-            </div>
-            <div class="comment-footer">
-                up<span class="glyphicon glyphicon-thumbs-up"></span>down
-                <span class="glyphicon glyphicon-thumbs-down"></span>
-            </div>
-        </div>
-        <div class="comment">
-            <div class="comment-header">
-                <span>用户名</span>
-                <span class="glyphicon glyphicon-stats"></span>
-                <span>打分</span>
-                <ul>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                    <li class="glyphicon glyphicon-star-empty"></li>
-                </ul>
-            </div>
-            <div class="comment-content">
-                现实与奇幻之间完美交融，用奇幻之美抵挡现实的残酷，守住人性的光辉。
-            </div>
-            <div class="comment-footer">
-                up<span class="glyphicon glyphicon-thumbs-up"></span>down
-                <span class="glyphicon glyphicon-thumbs-down"></span>
+                <div class="review-time">{{ review.createdTime }}</div>
             </div>
         </div>
     </div>
@@ -363,6 +253,41 @@
         </div><!-- END: modal-content -->
     </div>
 </div><!-- END: register modal -->
+
+<div class="modal fade" id="reviewModal" tabindex="-3" role="dialog" aria-labelledby="reviewLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <div class="modal-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+                        <path d="M36 8l4 8h-6l-4-8h-4l4 8h-6l-4-8h-4l4 8h-6l-4-8H8c-2.21 0-3.98 1.79-3.98 4L4 36c0 2.21 1.79 4 4 4h32c2.21 0 4-1.79 4-4V8h-8z"></path>
+                    </svg>
+                    <span>Movie-Finder</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="score">
+                    <span class="score-btn">打分</span>
+                    <ul class="score">
+                        <li class="glyphicon glyphicon-star-empty"></li>
+                        <li class="glyphicon glyphicon-star-empty"></li>
+                        <li class="glyphicon glyphicon-star-empty"></li>
+                        <li class="glyphicon glyphicon-star-empty"></li>
+                        <li class="glyphicon glyphicon-star-empty"></li>
+                    </ul>
+                    <span class="score-final"></span>
+                </div>
+                <textarea class="review" maxlength="100000">
+                </textarea>
+                <div class="error-message review" hidden></div>
+            </div>
+            <div class="modal-footer">
+                <div class="modal-btn-footer" id="review_btn">提交</div>
+            </div>
+        </div><!-- END: modal-content -->
+    </div>
+</div>
 <!-- END: modal -->
 
 <!-- 引入jQuery -->
@@ -372,7 +297,123 @@
 <!-- 引入自定义JS -->
 <script src="script/main.js"></script>
 <script>
+    var objKey = getParams();
+    var keyword = objKey["movieId"];
 
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:1189/api/movies',
+        data: {
+            movieId: keyword
+        },
+        success: function (data, textStatus) {
+            var name = data.movieName;
+            var releaseDate = data.releaseDate;
+            var score = data.score;
+            var genres = data.genres;
+            var starActors = data.starActors;
+            var ordActors = data.ordinaryActors;
+            var directors = data.directors;
+
+            $("span.movie_title").text(name);
+
+            Vue.filter('formatDate', function (input) {
+                if (!input) return " ";
+                var year = input.slice(0, 4);
+                var month = input.slice(4, 6);
+                var day = input.slice(6, 8);
+                return year + "-" + month + "-" + day;
+            });
+            var vinfo = new Vue({
+                el: 'div.movie-info',
+                data: {
+                    name: name,
+                    releaseDate: releaseDate,
+                    score: score,
+                    genres: genres,
+                    starActors: starActors,
+                    ordActors: ordActors,
+                    directors: directors
+                }
+            });
+            var $starList = $("ul.allstar");
+            var fscore = Math.floor(score);
+            var over = Math.ceil(score);
+            var empty = 5;
+
+            for (var j = 0; j < fscore; ++j) {
+                $starList.append("<li class='glyphicon glyphicon-star'></li>");
+            }
+            if (fscore != 5) {
+                if (fscore !== over) {
+                    $starList.append('<li class="full-empty-star"></li>');
+                    empty = 4;
+                }
+            }
+            for (var k = j; k < empty; ++k) {
+                $starList.append('<li class="glyphicon glyphicon-star-empty"></li>');
+            }
+            $("li.full-empty-star").append(' <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1496747430879" class="icon" viewBox="0 0 1026 1024" version="1.1" p-id="1428" width="200.390625" height="200"><defs></defs><path d="M512.275763 112.128l112.64 228.352c11.776 24.064 34.816 40.96 61.44 44.544l252.416 36.864-182.784 178.176c-19.456 18.944-28.16 45.568-23.552 72.192l43.008 251.392-225.792-118.784c-11.776-6.144-24.576-9.216-37.888-9.216-13.312 0-26.112 3.072-37.888 9.216l-225.792 118.784 43.008-251.392c4.608-26.624-4.096-53.248-23.552-72.192L85.779763 421.888 338.195763 385.536c26.624-4.096 49.664-20.48 61.44-44.544L512.275763 112.128M512.275763 23.552c-9.728 0-19.456 5.12-24.576 15.36L350.995763 316.928c-4.096 8.192-11.776 13.824-20.48 14.848L23.315763 376.32c-22.528 3.072-31.232 30.72-14.848 46.08L230.675763 638.976c6.656 6.144 9.216 15.36 7.68 24.064l-52.224 305.664c-3.072 17.408 10.752 31.744 26.624 31.744 4.096 0 8.704-1.024 12.8-3.072l274.432-144.384c4.096-2.048 8.192-3.072 12.8-3.072 4.096 0 8.704 1.024 12.8 3.072l274.432 144.384c4.096 2.048 8.704 3.072 12.8 3.072 15.872 0 29.696-14.336 26.624-31.744l-52.224-305.664c-1.536-8.704 1.536-17.92 7.68-24.064l222.208-216.576c15.872-15.872 7.168-43.008-14.848-46.08l-306.688-44.544c-8.704-1.536-16.384-6.656-20.48-14.848L536.851763 38.912C531.731763 28.672 522.003763 23.552 512.275763 23.552L512.275763 23.552z" p-id="1429"/><path d="M487.699763 38.912 350.995763 316.928c-4.096 8.192-11.776 13.824-20.48 14.848L23.315763 376.32c-22.528 3.072-31.232 30.72-14.848 46.08L230.675763 638.976c6.656 6.144 9.216 15.36 7.68 24.064l-52.224 305.664c-3.584 22.016 19.456 38.912 39.424 28.672l274.432-144.384c4.096-2.048 7.168-3.072 12.8-3.072L512.787763 23.552C501.523763 23.552 492.819763 28.672 487.699763 38.912z" p-id="1430"/></svg>');
+        }
+    });
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:1189/api/movies/similar',
+        data: {
+            movieId: keyword
+        },
+        success: function (data) {
+            $("div.recommend-movie tr").each(function (index) {
+                if (index == 0) {
+                    for (var i = 0; i < 4 && i < data.length; ++i) {
+                        var mov = data[i];
+                        var $name = $("<a data-movie=" + mov.movieId + "></a>");
+                        $name.text(mov.movieName);
+                        var $td = $('<td></td>');
+                        $td.append('<img src="images/test.webp" />');
+                        $td.append($name);
+
+                        $(this).append($td);
+                    }
+                } else {
+                    for (var i = 4; i < 8 && i < data.length; ++i) {
+                        var mov = data[i];
+                        var $name = $("<a data-movie=" + mov.movieId + "></a>");
+                        $name.text(mov.movieName);
+                        var $td = $('<td><img src="images/test.webp" /></td>');
+                        $td.append($name);
+
+                        $(this).append($td);
+                    }
+                }
+            });
+            addAllLinks();
+            addMovieLinks();
+        },
+        error: function () {
+        }
+    });
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:1189/api/reviews',
+        data:{
+            movieId: keyword
+        },
+        success: function(data){
+            var hot_reviews = data.hotReviews;
+            var new_reivews = data.newReviews;
+            var all_reviews = data.allReviews;
+
+            var vreviews = new Vue({
+                el: '#comment-zone',
+                data: {
+                    allReviews: all_reviews
+                }
+            })
+
+        },
+        error: function(){}
+    });
 </script>
 </body>
 </html>

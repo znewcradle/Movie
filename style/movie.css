@@ -29,7 +29,7 @@ div.info ul li{
     list-style-type: none;
 }
 div.info ul li span {
-    margin-right: 1.2rem;
+    margin-right: 0.2rem;
 }
 div.info ul li ul, div.info ul li h4 {
     display: inline-block;
@@ -45,26 +45,59 @@ div.function-bar ul {
     padding: 0;
     padding-left: 0.2rem;
 }
+/******************************************功能区域*******************/
+span.write-btn, span.glyphicon.glyphicon-pencil{
+    cursor: pointer;
+    color: #653d32
+}
+span.score-btn, span.glyphicon.glyphicon-stats{
+    cursor: pointer;
+    color:#725043;
+}
+div#reviewModal div.modal-body{
+    text-align: center;
+}
+div.score ul.score{
+    padding: 0;
+    display: inline-block;
+}
+textarea.review{
+    resize: none;
+    width: 360px;
+    height: 140px;
+    max-width: 360px;
+    max-height: 140px;
+}
 
 
 /************************推荐电影列表**************************/
-div.recommend-movie ul {
-    padding: 0;
+div.recommend-movie img{
+    display: block;
+    cursor: pointer;
 }
-div.recommend-movie li.movie-row ul {
-    margin-bottom: 3.5rem;
-}
-div.recommend-movie ul li {
-    list-style: none;
-}
-div.recommend-movie ul li.movie-row ul li {
-    list-style: none;
+div.recommend-movie a{
     display: inline-block;
-    margin-right: 3rem;
+    color: #414141;
+    width: 75px;
+    height: 50px;
+    overflow: hidden;
+    text-align: center;
+    font-size: 1.2rem;
+    cursor: pointer;
 }
-div.recommend-movie ul li.movie-row ul li a{
-    position: absolute;
-    margin: 1px 1.2rem;
+div.recommend-movie td{
+    padding: 0.1rem 2.5rem;
+}
+div.recommend-movie a:hover{
+    text-decoration: underline;
+    color: #515131;
+    font-weight: bolder;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+div.recommend-movie img:hover{
+    -webkit-filter: brightness(0.6);
+    filter: brightness(0.6);
 }
 /*****************************评论列表***********************/
 div.comment {
@@ -77,12 +110,15 @@ div.comment ul{
 }
 div.comment div.comment-footer {
     float: right;
-    margin-right: 5rem;
+    margin-right: 1rem;
 }
 div.comment div.comment-footer span.glyphicon {
     margin-right: 1.2rem;
 }
-
+div.review-time{
+    font-size: 1rem;
+    padding-top: 0.1rem;
+}
 
 
 
