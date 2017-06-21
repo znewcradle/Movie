@@ -212,12 +212,16 @@ table.movie span.movie-title, table.movie span.person-title {
 table.movie div.detail {
     margin: 1.2rem 0;
 }
+section.actor-star {
+    margin: 0;
+    padding: 0;
+}
 
 table.movie div.allstar{
     display: inline-block;
 }
 table.movie div.allstar ul li{
-    color: gold;
+    color: #ffd866;
     list-style: none;
     display: inline-block;
 }
@@ -234,7 +238,7 @@ li.full-empty-star svg{
     height: 12px;
 }
 li.glyphicon.glyphicon-star {
-    color: gold;
+    color: #ffd866;
     list-style: none;
     display: inline-block;
 }
@@ -470,8 +474,8 @@ loading effect —— big
  ******************************************************/
 .search-loading {
 	position: fixed;
-	width: 80px;
-	height:80px;
+	width: 60px;
+	height:60px;
 	margin:auto;
     z-index: 10;
     top: 24%;
@@ -820,8 +824,159 @@ div.main.loading div[class^="movie-"] {
 	}
 }
 
+/***********************************************************
+loading effect - bubble
+**************************************************************/
+.bubblingG {
+	text-align: center;
+	width:350px;
+	height:219px;
+	margin: auto;
+}
+
+.bubblingG span {
+	display: inline-block;
+	vertical-align: middle;
+	width: 44px;
+	height: 44px;
+	margin: 109px auto;
+	background: rgb(0,0,0);
+	border-radius: 219px;
+		-o-border-radius: 219px;
+		-ms-border-radius: 219px;
+		-webkit-border-radius: 219px;
+		-moz-border-radius: 219px;
+	animation: bubblingG 1.5s infinite alternate;
+		-o-animation: bubblingG 1.5s infinite alternate;
+		-ms-animation: bubblingG 1.5s infinite alternate;
+		-webkit-animation: bubblingG 1.5s infinite alternate;
+		-moz-animation: bubblingG 1.5s infinite alternate;
+}
+
+#bubblingG_1 {
+	animation-delay: 0s;
+		-o-animation-delay: 0s;
+		-ms-animation-delay: 0s;
+		-webkit-animation-delay: 0s;
+		-moz-animation-delay: 0s;
+}
+
+#bubblingG_2 {
+	animation-delay: 0.45s;
+		-o-animation-delay: 0.45s;
+		-ms-animation-delay: 0.45s;
+		-webkit-animation-delay: 0.45s;
+		-moz-animation-delay: 0.45s;
+}
+
+#bubblingG_3 {
+	animation-delay: 0.9s;
+		-o-animation-delay: 0.9s;
+		-ms-animation-delay: 0.9s;
+		-webkit-animation-delay: 0.9s;
+		-moz-animation-delay: 0.9s;
+}
 
 
+
+@keyframes bubblingG {
+	0% {
+		width: 44px;
+		height: 44px;
+		background-color:rgb(0,0,0);
+		transform: translateY(0);
+	}
+
+	100% {
+		width: 105px;
+		height: 105px;
+		background-color:rgb(255,255,255);
+		transform: translateY(-92px);
+	}
+}
+
+@-o-keyframes bubblingG {
+	0% {
+		width: 44px;
+		height: 44px;
+		background-color:rgb(0,0,0);
+		-o-transform: translateY(0);
+	}
+
+	100% {
+		width: 105px;
+		height: 105px;
+		background-color:rgb(255,255,255);
+		-o-transform: translateY(-92px);
+	}
+}
+
+@-ms-keyframes bubblingG {
+	0% {
+		width: 44px;
+		height: 44px;
+		background-color:rgb(0,0,0);
+		-ms-transform: translateY(0);
+	}
+
+	100% {
+		width: 105px;
+		height: 105px;
+		background-color:rgb(255,255,255);
+		-ms-transform: translateY(-92px);
+	}
+}
+
+@-webkit-keyframes bubblingG {
+	0% {
+		width: 44px;
+		height: 44px;
+		background-color:rgb(0,0,0);
+		-webkit-transform: translateY(0);
+	}
+
+	100% {
+		width: 105px;
+		height: 105px;
+		background-color:rgb(255,255,255);
+		-webkit-transform: translateY(-92px);
+	}
+}
+
+@-moz-keyframes bubblingG {
+	0% {
+		width: 44px;
+		height: 44px;
+		background-color:rgb(0,0,0);
+		-moz-transform: translateY(0);
+	}
+
+	100% {
+		width: 105px;
+		height: 105px;
+		background-color:rgb(255,255,255);
+		-moz-transform: translateY(-92px);
+	}
+}
+
+
+/********************************************************
+增加页面具有点击效果的标签的样式
+********************************************************/
+span.person, span.movie-title, td.poster {
+    cursor: pointer;
+}
+span.person:hover, span.movie-title:hover {
+    text-decoration: underline;
+    color: #515131;
+    font-weight: bolder;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+td.poster:hover{
+    -webkit-filter: brightness(0.6);
+    filter: brightness(0.6);
+}
 
 
 

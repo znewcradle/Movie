@@ -63,18 +63,8 @@
         </div>
 </div>
 
-<div class="main loading">
-    <!--loading effect-->
-    <!--<div id="fountainG">-->
-    <!--<div id="fountainG_1" class="fountainG"></div>-->
-    <!--<div id="fountainG_2" class="fountainG"></div>-->
-    <!--<div id="fountainG_3" class="fountainG"></div>-->
-    <!--<div id="fountainG_4" class="fountainG"></div>-->
-    <!--<div id="fountainG_5" class="fountainG"></div>-->
-    <!--<div id="fountainG_6" class="fountainG"></div>-->
-    <!--<div id="fountainG_7" class="fountainG"></div>-->
-    <!--<div id="fountainG_8" class="fountainG"></div>-->
-    <!--</div>-->
+<div class="main">
+    <!-- loading effect -->
     <div class="search-loading">
         <div class="wBall" id="wBall_1">
             <div class="wInnerBall"></div>
@@ -98,14 +88,14 @@
         <table class="movie director" v-for="director in directors">
             <tbody>
             <tr class="item">
-                <td class="poster">
+                <td class="person poster">
                     <!-- 图片 -->
                     <img src="images/test.jpg"/>
                 </td>
                 <td class="content">
                     <div>
                         <div class="title">
-                            <span class="person-title" v-bind:data-director="director.directorId">{{ director.directorName }}</span>
+                            <span class="person person-title" v-bind:data-director="director.directorId">{{ director.directorName }}</span>
                         </div>
                         <div class="detail">
                             <span class="glyphicon glyphicon-facetime-video"></span>
@@ -122,14 +112,14 @@
         <table class="movie actor" v-for="actor in actors">
             <tbody>
             <tr class="item">
-                <td class="poster">
+                <td class="person poster">
                     <!-- 图片 -->
                     <img src="images/test.jpg"/>
                 </td>
                 <td class="content">
                     <div>
                         <div class="title">
-                            <span class="person-title" v-bind:data-actor="actor.actorId">{{ actor.actorName }}</span>
+                            <span class="person person-title" v-bind:data-actor="actor.actorId">{{ actor.actorName }}</span>
                         </div>
                         <div class="detail">
                             <span class="glyphicon glyphicon-th-list"></span>
@@ -146,7 +136,7 @@
         <table class="movie" v-for="mov in movies">
             <tbody>
             <tr class="item">
-                <td class="poster">
+                <td class="movie poster">
                     <!-- 图片 -->
                     <img src="images/test.jpg"/>
                 </td>
@@ -171,30 +161,22 @@
                                 <!--<span v-bind:data-director="mov.directors[0].directorId">{{ mov.directors[0].directorName }}/</span>-->
                                 <!--<span v-bind:data-director="mov.directors[1].directorId">{{ mov.directors[1].directorName }}</span>-->
                                 <template v-for="(director, index) in mov.directors">
-                                    <span v-bind:data-director="director.directorId"
+                                    <span class="person" v-bind:data-director="director.directorId"
                                           v-if="index != mov.directors.length - 1">{{  director.directorName }}/</span>
-                                    <span v-bind:data-director="director.directorId" v-else>{{ director.directorName }}&nbsp;</span>
+                                    <span class="person" v-bind:data-director="director.directorId" v-else>{{ director.directorName }}&nbsp;</span>
                                 </template>
                             </span>
-                            <span class="glyphicon glyphicon-th-list"></span>
-                            <span class="movie-actors">
-                                <!--<span v-bind:data-actor="mov.actors[0].actorId">{{ mov.actors[0].actorName }}/ </span>-->
-                                <!--<span v-bind:data-actor="mov.actors[1].actorId">{{ mov.actors[1].actorName }}/</span>-->
-                                <!--<span v-bind:data-actor="mov.actors[2].actorId">{{ mov.actors[2].actorName }}</span>-->
+                            <section class="movie-actors actor-star">
+                                <span class="glyphicon glyphicon-th-list"></span>
                                 <template v-for="(star, index)  in mov.starActors">
-                                    <span v-bind:data-actor="star.actorId" v-if="index != mov.starActors.length - 1">{{  star.actorName }}/</span>
-                                    <span v-bind:data-actor="star.actorId" v-else>{{ star.actorName }}</span>
+                                    <span class="person" v-bind:data-actor="star.actorId" v-if="index != mov.starActors.length - 1">{{  star.actorName }}/</span>
+                                    <span class="person" v-bind:data-actor="star.actorId" v-else>{{ star.actorName }}</span>
                                 </template>
-                            </span>
+                            </section>
                         </div>
                         <div class="star">
                             <div class="allstar">
                                 <ul>
-                                    <!--<li class="glyphicon glyphicon-star"></li>-->
-                                    <!--<li class="glyphicon glyphicon-star"></li>-->
-                                    <!--<li class="glyphicon glyphicon-star"></li>-->
-                                    <!--<li class="full-empty-star"></li>-->
-                                    <!--<li class="glyphicon glyphicon-star-empty"></li>-->
                                 </ul>
                                 <!-- 星星-->
                             </div>
@@ -324,9 +306,7 @@
 <!-- 引入自定义JS -->
 <script src="script/main.js"></script>
 <script>
-    var $loading = $("#fountaionG");
-    $loading.show();
-
+    loadingEffect($("div.search-loading"));
     var objKey = getParams();
     var keyword = objKey["key"];
     $.ajax({
@@ -344,8 +324,6 @@
             var movies = data['movies'];
             var directors = data['directors'];
             var actors = data['actors'];
-
-            console.log(JSON.stringify(directors));
 
             Vue.filter('formatDate', function (input) {
                 if (!input) return " ";
@@ -379,29 +357,7 @@
                 }
             });
 
-            var $starList = $("div.allstar ul");
-
-            $starList.each(function (index) {
-                var score = Math.floor(movies[index].score);
-                var over = Math.ceil(movies[index].score);
-                var empty = 5;
-
-                for (var j = 0; j < score; ++j) {
-                    $(this).append('<li class="glyphicon glyphicon-star"></li>');
-                }
-                if (score == 5) {
-                    return;
-                } else if (score !== over) {
-                    $(this).append('<li class="full-empty-star"></li>');
-                    empty = 4;
-                }
-
-                for (var k = j; k < empty; ++k) {
-                    $(this).append('<li class="glyphicon glyphicon-star-empty"></li>');
-                }
-            });
-            $("li.full-empty-star").append(' <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1496747430879" class="icon" viewBox="0 0 1026 1024" version="1.1" p-id="1428" width="200.390625" height="200"><defs></defs><path d="M512.275763 112.128l112.64 228.352c11.776 24.064 34.816 40.96 61.44 44.544l252.416 36.864-182.784 178.176c-19.456 18.944-28.16 45.568-23.552 72.192l43.008 251.392-225.792-118.784c-11.776-6.144-24.576-9.216-37.888-9.216-13.312 0-26.112 3.072-37.888 9.216l-225.792 118.784 43.008-251.392c4.608-26.624-4.096-53.248-23.552-72.192L85.779763 421.888 338.195763 385.536c26.624-4.096 49.664-20.48 61.44-44.544L512.275763 112.128M512.275763 23.552c-9.728 0-19.456 5.12-24.576 15.36L350.995763 316.928c-4.096 8.192-11.776 13.824-20.48 14.848L23.315763 376.32c-22.528 3.072-31.232 30.72-14.848 46.08L230.675763 638.976c6.656 6.144 9.216 15.36 7.68 24.064l-52.224 305.664c-3.072 17.408 10.752 31.744 26.624 31.744 4.096 0 8.704-1.024 12.8-3.072l274.432-144.384c4.096-2.048 8.192-3.072 12.8-3.072 4.096 0 8.704 1.024 12.8 3.072l274.432 144.384c4.096 2.048 8.704 3.072 12.8 3.072 15.872 0 29.696-14.336 26.624-31.744l-52.224-305.664c-1.536-8.704 1.536-17.92 7.68-24.064l222.208-216.576c15.872-15.872 7.168-43.008-14.848-46.08l-306.688-44.544c-8.704-1.536-16.384-6.656-20.48-14.848L536.851763 38.912C531.731763 28.672 522.003763 23.552 512.275763 23.552L512.275763 23.552z" p-id="1429"/><path d="M487.699763 38.912 350.995763 316.928c-4.096 8.192-11.776 13.824-20.48 14.848L23.315763 376.32c-22.528 3.072-31.232 30.72-14.848 46.08L230.675763 638.976c6.656 6.144 9.216 15.36 7.68 24.064l-52.224 305.664c-3.584 22.016 19.456 38.912 39.424 28.672l274.432-144.384c4.096-2.048 7.168-3.072 12.8-3.072L512.787763 23.552C501.523763 23.552 492.819763 28.672 487.699763 38.912z" p-id="1430"/></svg>');
-
+            addStars(movies);
             addAllLinks();
         },
         error: function () {
