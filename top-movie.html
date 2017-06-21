@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Search Result</title>
+    <title>Top Search Result</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 引入 Bootstrap -->
@@ -95,54 +95,6 @@
         </div>
     </div>
 
-    <div class="movie-person" id="movie_director">
-        <h3>导演</h3>
-        <table class="movie director" v-for="director in directors">
-            <tbody>
-            <tr class="item">
-                <td class="person poster">
-                    <!-- 图片 -->
-                    <img src="images/test.jpg"/>
-                </td>
-                <td class="content">
-                    <div>
-                        <div class="title">
-                            <span class="person person-title" v-bind:data-director="director.directorId">{{ director.directorName }}</span>
-                        </div>
-                        <div class="detail">
-                            <span class="glyphicon glyphicon-facetime-video"></span>
-                            <span class="movie-director">导演</span>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="movie-person" id="movie_actor">
-        <h3>演员</h3>
-        <table class="movie actor" v-for="actor in actors">
-            <tbody>
-            <tr class="item">
-                <td class="person poster">
-                    <!-- 图片 -->
-                    <img src="images/test.jpg"/>
-                </td>
-                <td class="content">
-                    <div>
-                        <div class="title">
-                            <span class="person person-title" v-bind:data-actor="actor.actorId">{{ actor.actorName }}</span>
-                        </div>
-                        <div class="detail">
-                            <span class="glyphicon glyphicon-th-list"></span>
-                            <span class="movie-actors">演员</span>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
     <div class="movie-list" id="movie_list">
         <h3>电影</h3>
         <table class="movie" v-for="mov in movies">
@@ -170,8 +122,6 @@
                             </span>
                             <span class="glyphicon glyphicon-facetime-video"></span>
                             <span class="movie-director">
-                                <!--<span v-bind:data-director="mov.directors[0].directorId">{{ mov.directors[0].directorName }}/</span>-->
-                                <!--<span v-bind:data-director="mov.directors[1].directorId">{{ mov.directors[1].directorName }}</span>-->
                                 <template v-for="(director, index) in mov.directors">
                                     <span class="person" v-bind:data-director="director.directorId"
                                           v-if="index != mov.directors.length - 1">{{  director.directorName }}/</span>
@@ -280,22 +230,14 @@
 <script>
     loadingEffect($("div.search-loading"));
     var objKey = getParams();
-    var keyword = objKey["key"];
+    var keyword = objKey["type"];
+
     $.ajax({
-        type: 'get',
-        url: 'http://localhost:1189/api/movies/search',
-        data: {
-            searchText: keyword
-        },
-        beforeSend: function (XMLHttpRequest) {
-            var token = localStorage.getItem("token");
-            var token_type = localStorage.getItem("token_type");
-            XMLHttpRequest.setRequestHeader("Authorization", token_type + " " + token);
-        },
-        success: function (data, textStatus) {
-            var movies = data['movies'];
-            var directors = data['directors'];
-            var actors = data['actors'];
+        type: 'GET',
+        url: 'http://localhost:1189/api/movies/top100',
+        data:{},
+        success: function(data){
+           var movies = data;
 
             Vue.filter('formatDate', function (input) {
                 if (!input) return " ";
@@ -304,37 +246,16 @@
                 var day = input.slice(6, 8);
                 return year + "-" + month + "-" + day;
             });
-
-            var mdirector = new Vue({
-                el: '#movie_director',
-                data: {
-                    directors: directors
-                }
-            });
-            var mactor = new Vue({
-                el: '#movie_actor',
-                data: {
-                    actors: actors
-                }
-            });
             var mmovie = new Vue({
                 el: '#movie_list',
                 data: {
                     movies: movies
-                },
-                computed: {
-                    releaseDate: function () {
-
-                    }
                 }
             });
-
             addStars(movies);
             addAllLinks();
         },
-        error: function () {
-
-        }
+        error: function(){}
     });
 </script>
 </body>

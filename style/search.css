@@ -43,6 +43,13 @@ div.header-navigation{
 div.header-navigation a {
     margin-left: 1rem;
 }
+
+a#movie-type-search{
+    position: relative;
+    left: 8.2rem;
+    top: -2.4rem;
+}
+
 div.header-search-bar{
     display: inline-block;
     position: absolute;
@@ -979,11 +986,45 @@ td.poster:hover{
     filter: brightness(0.6);
 }
 
+/***************************类型搜索**************************/
+div.movie-dropdown-content::before {
+   content: "";
+    border-width: 2rem;
+    display: inline-block;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 5px solid rgba(255, 255, 255, 0.8);
+    position: relative;
+    left: 3.6rem;
+    top: -1.7rem;
+    z-index: 200;
+}
+div.movie-dropdown-content{
+   background-color: rgba(245, 245, 245, 0.9);
+    position: relative;
+    color: #212121;
+    padding: 0 1rem;
+    height: 16rem;
+    left: 5.8rem;
+    width: 12.8rem;
+    top: 2px;
+}
+div.movie-dropdown-content ul{
+    padding: 0;
+    position: absolute;
+    top: 1rem;
+}
+div.movie-dropdown-content ul li{
+    list-style: none;
+    border-bottom: 1px dotted #eeeeee;
+}
+div.movie-dropdown-content ul li:hover{
+    font-weight: bolder;
+}
 
-
-
-
-
+div.movie-type-search:hover div.movie-dropdown-content {
+    display: block;
+}
 
 
 

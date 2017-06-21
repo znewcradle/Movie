@@ -147,6 +147,19 @@ $(function () {
         var objKey = getParams();
         var keyword = objKey["movieId"];
 
+        var is_scored = false;
+        //必须先打分, false为没有打分
+        $("ul.score li").each(function(){
+            if($(this).hasClass("glyphicon glyphicon-star")){
+                is_scored = true;
+                return;
+            }
+        });
+        if(is_scored == false){
+            alert("请先打分");
+            return;
+        }
+
         $.ajax({
             type: 'POST',
             url: 'http://localhost:1189/api/reviews/create',
@@ -154,16 +167,17 @@ $(function () {
                 movieId: keyword,
                 Description: review_text
             },
-             beforeSend: function (XMLHttpRequest) {
+            beforeSend: function (XMLHttpRequest) {
                 var token = localStorage.getItem("token");
                 var type = localStorage.getItem("token_type");
                 XMLHttpRequest.setRequestHeader("Authorization", type + " " + token);
             },
-            success: function(){
+            success: function () {
                 $("#reviewModal").modal('hide');
                 location.reload();
             },
-            error: function(){}
+            error: function () {
+            }
         });
 
     });
@@ -236,17 +250,54 @@ $(function () {
                     $("div.function-bar li.glyphicon.glyphicon-star-empty:nth-child(" + (i + 1) + ")").removeClass().addClass("glyphicon glyphicon-star");
                 }
             },
-            error: function(){}
+            error: function () {
+            }
         });
 
     });
     /********************************了解更多****************************/
-    $("span.director-more, span.actor-more").click(function(){
+    $("span.director-more, span.actor-more").click(function () {
         var text = $(this).parent().parent().find("span.person-title").text();
         var url = "http://www.baidu.com/s?wd=" + text;
         window.location.href = url;
     });
+    /************************按类型搜索******************************/
+    $("div.movie-dropdown-content ul li").click(function () {
+        var type = $(this).attr("id");
+        if (type == null) {
+            return;
+        }
+        window.location.href = connectURL("search-type.html", "type", type);
+    });
+    /**************************top100**********************************/
+    $("a#movie-top-search").click(function(){
+        window.location.href = "top-movie.html";
+    });
+    /****************************collect movie******************************************/
+    $("div.collect-movie").click(function(){
+        var objKey = getParams();
+        var keyword = objKey["movieId"];
+        var  $svg = $("svg.collect-movie");
+
+        $.ajax({
+            url: 'http://localhost:1189/api/movies/collect',
+            type: 'post',
+            data:{
+                movieId: keyword
+            },
+             beforeSend: function (XMLHttpRequest) {
+                var token = localStorage.getItem("token");
+                var type = localStorage.getItem("token_type");
+                XMLHttpRequest.setRequestHeader("Authorization", type + " " + token);
+            },
+            success:function(data){
+                $svg.attr("fill", "gold");
+            },
+            error: function(){}
+        });
+    });
 });
+/********************************************End of document loading****************************************/
 
 //loading effect
 function loadingEffect($loading) {
@@ -254,6 +305,7 @@ function loadingEffect($loading) {
     $(document).ajaxStart(function () {
         $loading.show();
         $("div.main div[class^='movie-']").hide();
+
     }).ajaxStop(function () {
         $loading.hide();
         $("div.main div[class^='movie-']").show();
@@ -364,7 +416,40 @@ function goToMovies(mId) {
     window.location.href = connectURL("movie.html", "movieId", mId);
 }
 
+var searchByType = function (type) {
+    if (type == null) {
+        return;
+    }
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:1189/api/movies/genres',
+        data: {
+            genre: type
+        },
+        success: function (data) {
+            var movies = data;
+            $("div.movie-person").hide();
 
+            Vue.filter('formatDate', function (input) {
+                if (!input) return " ";
+                var year = input.slice(0, 4);
+                var month = input.slice(4, 6);
+                var day = input.slice(6, 8);
+                return year + "-" + month + "-" + day;
+            });
+            var mmovie = new Vue({
+                el: '#movie_list',
+                data: {
+                    movies: movies
+                }
+            });
+            addStars(movies);
+            addAllLinks();
+        },
+        error: function () {
+        }
+    });
+}
 
 
 

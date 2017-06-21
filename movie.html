@@ -26,8 +26,20 @@
         </a>
     </div>
     <div class="header-navigation">
-        <a>TOP榜单</a>
-        <a>类型</a>
+        <a id="movie-top-search">TOP榜单</a>
+        <div class="movie-type-search">
+            <a id="movie-type-search">类型</a>
+            <div class="movie-dropdown-content" hidden>
+                <ul>
+                    <li id="Drama">Drama</li>
+                    <li id="Comedy">Comedy</li>
+                    <li id="Thriller">Thriller</li>
+                    <li id="Action">Action</li>
+                    <li id="Romance">Romance</li>
+                    <li id="Documentary">Documentary</li>
+                </ul>
+            </div>
+        </div>
     </div>
     <div class="header-search-bar">
         <div class="cntr">
@@ -65,6 +77,25 @@
 </div>
 
 <div class="movie main">
+  <!-- loading effect -->
+    <div class="search-loading">
+        <div class="wBall" id="wBall_1">
+            <div class="wInnerBall"></div>
+        </div>
+        <div class="wBall" id="wBall_2">
+            <div class="wInnerBall"></div>
+        </div>
+        <div class="wBall" id="wBall_3">
+            <div class="wInnerBall"></div>
+        </div>
+        <div class="wBall" id="wBall_4">
+            <div class="wInnerBall"></div>
+        </div>
+        <div class="wBall" id="wBall_5">
+            <div class="wInnerBall"></div>
+        </div>
+    </div>
+
     <div class="movie-info">
         <h1>{{ name }}</h1>
         <div>
@@ -131,8 +162,17 @@
                 </ul>
             </div>
         </div>
+        <div class="collect-movie">
+            <svg class="collect-movie" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="306px" height="306px" viewBox="0 0 306 306" style="enable-background:new 0 0 306 306;" xml:space="preserve">
+                <g>
+                    <g>
+                        <polygon points="153,230.775 247.35,299.625 211.65,187.425 306,121.125 191.25,121.125 153,6.375 114.75,121.125 0,121.125     94.35,187.425 58.65,299.625   "></polygon>
+	                </g>
+                </g>
+            </svg>
+        </div>
     </div>
-    <div class="function-bar">
+    <div class="movie-bar function-bar">
         <span class="glyphicon glyphicon-pencil"></span>
         <span class="write-btn" data-toggle="modal" data-target="#reviewModal">写短评</span>
         <span class="glyphicon glyphicon-stats"></span>
@@ -146,7 +186,7 @@
         </ul>
         <span class="score-final"></span>
     </div>
-    <div class="recommend-movie">
+    <div class="movie-recommend  recommend-movie">
         <h3>喜欢这部电影的人也喜欢······</h3>
         <table>
             <tbody>
@@ -157,7 +197,7 @@
             </tbody>
         </table>
     </div>
-    <div class="comment-zone" id="comment-zone">
+    <div class="movie-comment comment-zone" id="comment-zone">
         <h3><span class="movie_title"></span>的短评······</h3>
         <h5><span class="hot-button">热门</span>/<span class="new-button">最新</span></h5>
         <div class="comment" v-for="review in allReviews">
@@ -297,6 +337,7 @@
 <!-- 引入自定义JS -->
 <script src="script/main.js"></script>
 <script>
+     loadingEffect($("div.search-loading"));
     var objKey = getParams();
     var keyword = objKey["movieId"];
 

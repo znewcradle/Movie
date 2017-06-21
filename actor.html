@@ -17,14 +17,28 @@
 <body>
 <div class="header fixed-header">
     <div class="header-logo">
-        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
-            <path d="M36 8l4 8h-6l-4-8h-4l4 8h-6l-4-8h-4l4 8h-6l-4-8H8c-2.21 0-3.98 1.79-3.98 4L4 36c0 2.21 1.79 4 4 4h32c2.21 0 4-1.79 4-4V8h-8z"></path>
-        </svg>
-        <span>Movie-Finder</span>
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+                <path d="M36 8l4 8h-6l-4-8h-4l4 8h-6l-4-8h-4l4 8h-6l-4-8H8c-2.21 0-3.98 1.79-3.98 4L4 36c0 2.21 1.79 4 4 4h32c2.21 0 4-1.79 4-4V8h-8z"></path>
+            </svg>
+            <span>Movie-Finder</span>
+        </a>
     </div>
     <div class="header-navigation">
-        <a>TOP榜单</a>
-        <a>类型</a>
+        <a id="movie-top-search">TOP榜单</a>
+        <div class="movie-type-search">
+            <a id="movie-type-search">类型</a>
+            <div class="movie-dropdown-content" hidden>
+                <ul>
+                    <li id="Drama">Drama</li>
+                    <li id="Comedy">Comedy</li>
+                    <li id="Thriller">Thriller</li>
+                    <li id="Action">Action</li>
+                    <li id="Romance">Romance</li>
+                    <li id="Documentary">Documentary</li>
+                </ul>
+            </div>
+        </div>
     </div>
     <div class="header-search-bar">
         <div class="cntr">
@@ -43,6 +57,15 @@
         <a data-toggle="modal" data-target="#registerModal">
             <span class="glyphicon glyphicon-log-in"></span>注册
         </a>
+    </div>
+    <div class="heading user-entrance after-login" hidden>
+        <span class="user-profile">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><path
+                    d="M24 24c4.42 0 8-3.59 8-8 0-4.42-3.58-8-8-8s-8 3.58-8 8c0 4.41 3.58 8 8 8zm0 4c-5.33 0-16 2.67-16 8v4h32v-4c0-5.33-10.67-8-16-8z"></path></svg>
+        </span>
+        <span class="user-name">
+        </span>
+        <span class="glyphicon glyphicon-log-out log-out"></span>
     </div>
 </div>
 
@@ -109,22 +132,22 @@
                         <div class="detail">
                             <!--信息 -->
                             <span class="glyphicon glyphicon-time"></span>
-                            <span class="release-date">{{ mov.releaseData | formatDate }}</span>
+                            <span class="release-date">{{ mov.releaseDate | formatDate }}</span>
                             <span class="glyphicon glyphicon-bookmark"></span>
-                            <!--<span class="movie-type">-->
-                                <!--<template v-for="(tag,index) in mov.genres">-->
-                                    <!--<span v-if="index != mov.genres.length - 1"> {{ tag }}/</span>-->
-                                    <!--<span v-else>{{ tag }}&nbsp;</span>-->
-                                <!--</template>-->
-                            <!--</span>-->
+                            <span class="movie-type">
+                                <template v-for="(tag,index) in mov.genres">
+                                    <span v-if="index != mov.genres.length - 1"> {{ tag }}/</span>
+                                    <span v-else>{{ tag }}&nbsp;</span>
+                                </template>
+                            </span>
                              <span class="glyphicon glyphicon-facetime-video"></span>
-                            <!--<span class="movie-director">-->
-                                 <!--<template v-for="(director, index) in mov.directors">-->
-                                    <!--<span class="person" v-bind:data-director="director.directorId"-->
-                                          <!--v-if="index != mov.directors.length - 1">{{  director.directorName }}/</span>-->
-                                    <!--<span class="person" v-bind:data-director="director.directorId" v-else>{{ director.directorName }}&nbsp;</span>-->
-                                <!--</template>-->
-                            <!--</span>-->
+                            <span class="movie-director">
+                                 <template v-for="(director, index) in mov.directors">
+                                    <span class="person" v-bind:data-director="director.directorId"
+                                          v-if="index != mov.directors.length - 1">{{  director.directorName }}/</span>
+                                    <span class="person" v-bind:data-director="director.directorId" v-else>{{ director.directorName }}&nbsp;</span>
+                                </template>
+                            </span>
                         </div>
                         <div class="star">
                             <div class="allstar">
