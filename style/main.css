@@ -216,7 +216,13 @@ span.log-out:hover{
     color: rgba(205, 0, 0, 0.8);
 }
 
-
+/***************************for the personal homepage*********************/
+div.personal.main div[class^="movies-"]{
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 50%;
+    left: 35%;
+    position: relative;
+}
 
 
 

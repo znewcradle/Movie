@@ -13,6 +13,8 @@
     <link href="style/main.css" rel="stylesheet">
     <link href="style/movie.css" rel="stylesheet">
     <link href="style/person.css" rel="stylesheet">
+    <!--       引入Vue.js     -->
+    <script src="script/vue.min.js"></script>
 </head>
 <body>
 <div class="header fixed-header">
@@ -77,7 +79,180 @@
 </div>
 
 <div class="personal main">
+    <div class="side-bar">
 
+    </div>
+    <div class="movies-collected">
+        <h3>收藏列表</h3>
+        <table class="movie" v-for="mov in collectedMovies">
+            <tbody>
+            <tr class="item">
+                <td class="movie poster">
+                    <!-- 图片 -->
+                    <img src="images/test.webp" />
+                </td>
+                <td class="content">
+                    <div>
+                        <div class="title">
+                            <span class="movie-title" v-bind:data-movie="mov.movieId">{{ mov.movieName }}</span>
+                        </div>
+                        <div class="detail">
+                            <!--信息 -->
+                            <span class="glyphicon glyphicon-time"></span>
+                            <span class="release-date">{{ mov.releaseDate | formatDate }}</span>
+                            <span class="glyphicon glyphicon-bookmark"></span>
+                            <span class="movie-type">
+                                <template v-for="(tag,index) in mov.genres">
+                                    <span v-if="index != mov.genres.length - 1"> {{ tag }}/</span>
+                                    <span v-else>{{ tag }}&nbsp;</span>
+                                </template>
+                            </span>
+                            <span class="glyphicon glyphicon-facetime-video"></span>
+                            <span class="movie-director">
+                                <!--<span v-bind:data-director="mov.directors[0].directorId">{{ mov.directors[0].directorName }}/</span>-->
+                                <!--<span v-bind:data-director="mov.directors[1].directorId">{{ mov.directors[1].directorName }}</span>-->
+                                <template v-for="(director, index) in mov.directors">
+                                    <span class="person" v-bind:data-director="director.directorId"
+                                          v-if="index != mov.directors.length - 1">{{  director.directorName }}/</span>
+                                    <span class="person" v-bind:data-director="director.directorId" v-else>{{ director.directorName }}&nbsp;</span>
+                                </template>
+                            </span>
+                            <section class="movie-actors actor-star">
+                                <span class="glyphicon glyphicon-th-list"></span>
+                                <template v-for="(star, index)  in mov.starActors">
+                                    <span class="person" v-bind:data-actor="star.actorId" v-if="index != mov.starActors.length - 1">{{  star.actorName }}/</span>
+                                    <span class="person" v-bind:data-actor="star.actorId" v-else>{{ star.actorName }}</span>
+                                </template>
+                            </section>
+                        </div>
+                        <div class="star">
+                            <div class="allstar">
+                                <ul>
+                                </ul>
+                                <!-- 星星-->
+                            </div>
+                            <span class="rating_nums">{{ mov.score }}<!-- 分数--></span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="movies-scored">
+        <h3>评分列表</h3>
+        <table class="movie" v-for="mov in scoredMovies">
+            <tbody>
+            <tr class="item">
+                <td class="movie poster">
+                    <!-- 图片 -->
+                    <img src="images/test.webp" />
+                </td>
+                <td class="content">
+                    <div>
+                        <div class="title">
+                            <span class="movie-title" v-bind:data-movie="mov.movieId">{{ mov.movieName }}</span>
+                        </div>
+                        <div class="detail">
+                            <!--信息 -->
+                            <span class="glyphicon glyphicon-time"></span>
+                            <span class="release-date">{{ mov.releaseDate | formatDate }}</span>
+                            <span class="glyphicon glyphicon-bookmark"></span>
+                            <span class="movie-type">
+                                <template v-for="(tag,index) in mov.genres">
+                                    <span v-if="index != mov.genres.length - 1"> {{ tag }}/</span>
+                                    <span v-else>{{ tag }}&nbsp;</span>
+                                </template>
+                            </span>
+                            <span class="glyphicon glyphicon-facetime-video"></span>
+                            <span class="movie-director">
+                                <!--<span v-bind:data-director="mov.directors[0].directorId">{{ mov.directors[0].directorName }}/</span>-->
+                                <!--<span v-bind:data-director="mov.directors[1].directorId">{{ mov.directors[1].directorName }}</span>-->
+                                <template v-for="(director, index) in mov.directors">
+                                    <span class="person" v-bind:data-director="director.directorId"
+                                          v-if="index != mov.directors.length - 1">{{  director.directorName }}/</span>
+                                    <span class="person" v-bind:data-director="director.directorId" v-else>{{ director.directorName }}&nbsp;</span>
+                                </template>
+                            </span>
+                            <section class="movie-actors actor-star">
+                                <span class="glyphicon glyphicon-th-list"></span>
+                                <template v-for="(star, index)  in mov.starActors">
+                                    <span class="person" v-bind:data-actor="star.actorId" v-if="index != mov.starActors.length - 1">{{  star.actorName }}/</span>
+                                    <span class="person" v-bind:data-actor="star.actorId" v-else>{{ star.actorName }}</span>
+                                </template>
+                            </section>
+                        </div>
+                        <div class="star">
+                            <div class="allstar">
+                                <ul>
+                                </ul>
+                                <!-- 星星-->
+                            </div>
+                            <span class="rating_nums">{{ mov.score }}<!-- 分数--></span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="movies-reviewed">
+        <h3>评论列表</h3>
+        <table class="movie" v-for="mov in reviewedMovies">
+            <tbody>
+            <tr class="item">
+                <td class="movie poster">
+                    <!-- 图片 -->
+                    <img src="images/test.webp" />
+                </td>
+                <td class="content">
+                    <div>
+                        <div class="title">
+                            <span class="movie-title" v-bind:data-movie="mov.movieId">{{ mov.movieName }}</span>
+                        </div>
+                        <div class="detail">
+                            <!--信息 -->
+                            <span class="glyphicon glyphicon-time"></span>
+                            <span class="release-date">{{ mov.releaseDate | formatDate }}</span>
+                            <span class="glyphicon glyphicon-bookmark"></span>
+                            <span class="movie-type">
+                                <template v-for="(tag,index) in mov.genres">
+                                    <span v-if="index != mov.genres.length - 1"> {{ tag }}/</span>
+                                    <span v-else>{{ tag }}&nbsp;</span>
+                                </template>
+                            </span>
+                            <span class="glyphicon glyphicon-facetime-video"></span>
+                            <span class="movie-director">
+                                <!--<span v-bind:data-director="mov.directors[0].directorId">{{ mov.directors[0].directorName }}/</span>-->
+                                <!--<span v-bind:data-director="mov.directors[1].directorId">{{ mov.directors[1].directorName }}</span>-->
+                                <template v-for="(director, index) in mov.directors">
+                                    <span class="person" v-bind:data-director="director.directorId"
+                                          v-if="index != mov.directors.length - 1">{{  director.directorName }}/</span>
+                                    <span class="person" v-bind:data-director="director.directorId" v-else>{{ director.directorName }}&nbsp;</span>
+                                </template>
+                            </span>
+                            <section class="movie-actors actor-star">
+                                <span class="glyphicon glyphicon-th-list"></span>
+                                <template v-for="(star, index)  in mov.starActors">
+                                    <span class="person" v-bind:data-actor="star.actorId" v-if="index != mov.starActors.length - 1">{{  star.actorName }}/</span>
+                                    <span class="person" v-bind:data-actor="star.actorId" v-else>{{ star.actorName }}</span>
+                                </template>
+                            </section>
+                        </div>
+                        <div class="star">
+                            <div class="allstar">
+                                <ul>
+                                </ul>
+                                <!-- 星星-->
+                            </div>
+                            <span class="rating_nums">{{ mov.score }}<!-- 分数--></span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <!-- 引入jQuery -->
@@ -97,7 +272,42 @@
                 XMLHttpRequest.setRequestHeader("Authorization", type + " " + token);
             },
         success: function(data){
-            //console.log(data);
+            var user_name = data.uesrName;
+            var scoredMovies = data.scoredMovies;
+            var collectedMovies = data.collectedMovies;
+            var reviewedMovies = data.reviewedMovies;
+
+            Vue.filter('formatDate', function (input) {
+                if (!input) return " ";
+                var year = input.slice(0, 4);
+                var month = input.slice(4, 6);
+                var day = input.slice(6, 8);
+                return year + "-" + month + "-" + day;
+            });
+
+            var smovies = new Vue({
+                el: 'div.movies-scored',
+                data:{
+                    scoredMovies: scoredMovies
+                }
+            });
+            var cmovies = new Vue({
+                el: 'div.movies-collected',
+                data:{
+                    collectedMovies: collectedMovies
+                }
+            });
+            var rmovies = new Vue({
+                el: 'div.movies-reviewed',
+                data: {
+                    reviewedMovies: reviewedMovies
+                }
+            });
+            addStars(scoredMovies);
+            addStars(collectedMovies);
+            addStars(reviewedMovies);
+
+            addAllLinks();
         },
         error: function(){}
     });
