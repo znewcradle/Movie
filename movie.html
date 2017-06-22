@@ -84,7 +84,7 @@
         <h1>{{ name }}</h1>
         <div>
             <div class="img-poster">
-                <img src="images/test.webp"/>
+                <img v-bind:src="{{ picUrl }}"/>
             </div>
             <div class="info">
                 <ul>
@@ -342,6 +342,7 @@
             var starActors = data.starActors;
             var ordActors = data.ordinaryActors;
             var directors = data.directors;
+            var picUrl = data.picUrl;
 
             $("span.movie_title").text(name);
 
@@ -362,7 +363,8 @@
                     genres: genres,
                     starActors: starActors,
                     ordActors: ordActors,
-                    directors: directors
+                    directors: directors,
+                    picUrl: picUrl
                 }
             });
             var $starList = $("div.movie-info ul.allstar");
@@ -385,7 +387,7 @@
                         var $name = $("<a data-movie=" + mov.movieId + "></a>");
                         $name.text(mov.movieName);
                         var $td = $('<td></td>');
-                        $td.append('<img src="images/test.webp" />');
+                        $td.append('<img src=' + data[i].picUrl  +' />');
                         $td.append($name);
 
                         $(this).append($td);
@@ -395,7 +397,7 @@
                         var mov = data[i];
                         var $name = $("<a data-movie=" + mov.movieId + "></a>");
                         $name.text(mov.movieName);
-                        var $td = $('<td><img src="images/test.webp" /></td>');
+                        var $td = $('<td><img src=' + data[i].picUrl + ' /></td>');
                         $td.append($name);
 
                         $(this).append($td);
