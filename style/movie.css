@@ -134,7 +134,7 @@ div.movie.main div.search-loading{
 div.movie.main div.collect-movie {
    position: absolute;
     left: 62%;
-    top: 24%;
+    top: 21%;
     background: none;
     margin: 0;
     border: none;
@@ -160,6 +160,14 @@ div.comment-footer span.glyphicon:hover{
     color: #eeeeee;
 }
 
+div.reviewContent{
+    background-color: rgba(255,255,255,0.4);
+    border-radius: 2%;
+    padding-top: 0.2rem;
+    padding-left: 0.8rem;
+    height: 62px;
+    overflow: hidden;
+}
 
 
 

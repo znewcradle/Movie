@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Actor</title>
+    <title>Buy ticket</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 引入 Bootstrap -->
@@ -70,99 +70,27 @@
     </div>
 </div>
 
-<div class="carousel-inner movie-background">
-        <div class="item active animated fadeInUp">
-            <img src="images/carousel1.jpg" alt="first"/>
+<div class="ticket main">
+    <div class="movie-ticket">
+        <span class="carousel-left">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><path d="M30.83 32.67l-9.17-9.17 9.17-9.17L28 11.5l-12 12 12 12z"/></svg>
+        </span>
+        <div id="movie-carousel" class="carousel slide">
+            <div class="item">
+                <h2 class="ticket-title">《异形·契约》</h2>
+                <img src="images/tiket1.jpg" alt="first"/>
+            </div>
+            <div class="item active" >
+                <h2 class="ticket-title">《变形金刚5·最后的骑士》</h2>
+                <img src="images/tiket2.jpg" alt="second"/>
+            </div>
         </div>
-</div>
-
-<div class="main person">
-
-    <!-- loading effect -->
-    <div class="bubblingG">
-	<span id="bubblingG_1">
-	</span>
-        <span id="bubblingG_2">
-	</span>
-        <span id="bubblingG_3">
-	</span>
+        <span class="carousel-right">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><path d="M17.17 32.92l9.17-9.17-9.17-9.17L20 11.75l12 12-12 12z"/></svg>
+        </span>
     </div>
+    <div class="movie-theater">
 
-    <div class="movie-person">
-        <h3>演员</h3>
-        <table class="movie">
-            <tbody>
-            <tr class="item">
-                <td class="poster">
-                    <!-- 图片 -->
-                    <img src="images/test.jpg"/>
-                </td>
-                <td class="content">
-                    <div>
-                        <div class="title">
-                            <span class="person-title"></span>
-                        </div>
-                        <div class="detail">
-                            <span class="glyphicon glyphicon-th-list"></span>
-                            <span class="movie-actor">演员</span>
-                        </div>
-                        <div class="know-more">
-                            <span class="glyphicon glyphicon-arrow-right"></span>
-                            <span class="actor-more">了解更多</span>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-     </div>
-    <div class="movie-list" id="actor-movie-list">
-        <h3>参演影片</h3>
-        <table class="movie person" v-for="mov in movies">
-            <tbody>
-            <tr class="item">
-                <td class="movie poster">
-                    <!-- 图片 -->
-                    <img src="images/test.jpg"/>
-                </td>
-                <td class="content">
-                    <div>
-                        <div class="title">
-                            <span class="movie-title" v-bind:data-movie="mov.movieId"> {{ mov.movieName }} </span>
-                        </div>
-                        <div class="detail">
-                            <!--信息 -->
-                            <span class="glyphicon glyphicon-time"></span>
-                            <span class="release-date">{{ mov.releaseDate | formatDate }}</span>
-                            <span class="glyphicon glyphicon-bookmark"></span>
-                            <span class="movie-type">
-                                <template v-for="(tag,index) in mov.genres">
-                                    <span v-if="index != mov.genres.length - 1"> {{ tag }}/</span>
-                                    <span v-else>{{ tag }}&nbsp;</span>
-                                </template>
-                            </span>
-                             <span class="glyphicon glyphicon-facetime-video"></span>
-                            <span class="movie-director">
-                                 <template v-for="(director, index) in mov.directors">
-                                    <span class="person" v-bind:data-director="director.directorId"
-                                          v-if="index != mov.directors.length - 1">{{  director.directorName }}/</span>
-                                    <span class="person" v-bind:data-director="director.directorId" v-else>{{ director.directorName }}&nbsp;</span>
-                                </template>
-                            </span>
-                        </div>
-                        <div class="star">
-                            <div class="allstar">
-                                <ul>
-                                </ul>
-                                <!-- 星星-->
-                            </div>
-                            <span class="rating_nums">{{ mov.score }}<!-- 分数--></span>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
     </div>
 </div>
 
@@ -188,9 +116,10 @@
                     <span class="glyphicon glyphicon-pencil input-group-addon"></span>
                     <input type="password" class="form-control" name="login-pwd" id="login-pwd" placeholder="您的密码"/>
                 </div>
+                <div class="error-message login" hidden></div>
             </div>
             <div class="modal-footer">
-                <div class="modal-btn-footer">登陆</div>
+                <div class="modal-btn-footer" id="login_btn">登陆</div>
             </div>
         </div><!-- END: /.modal-content -->
     </div><!-- END:  login-modal -->
@@ -224,9 +153,10 @@
                     <input type="password" class="form-control" name="registser-re-pwd" id="register-re-pwd"
                            placeholder="请确认您的密码"/>
                 </div>
+                <div class="error-message register" hidden></div>
             </div>
             <div class="modal-footer">
-                <div class="modal-btn-footer">注册</div>
+                <div class="modal-btn-footer" id="register_btn">注册</div>
             </div>
         </div><!-- END: modal-content -->
     </div>
@@ -238,45 +168,5 @@
 <script src="script/bootstrap.min.js"></script>
 <!-- 引入自定义JS -->
 <script src="script/main.js"></script>
-<script>
-    loadingEffect($("div.bubblingG"));
-
-    var objKey = getParams();
-    var keyword = objKey["actorId"];
-
-    $.ajax({
-        type: 'get',
-        url: 'http://localhost:1189/api/actors',
-        data:{
-            actorId: keyword
-        },
-        success: function(data){
-            var name = data.actorName;
-            var lead_movies = data.leadRoleMovies;
-
-            $("span.person-title").text(name);
-
-            Vue.filter('formatDate', function (input) {
-                if (!input) return " ";
-                var year = input.slice(0, 4);
-                var month = input.slice(4, 6);
-                var day = input.slice(6, 8);
-                return year + "-" + month + "-" + day;
-            });
-
-            var vmovies = new Vue({
-                el: '#actor-movie-list',
-                data:{
-                    movies: lead_movies
-                }
-            });
-            addStars(lead_movies);
-            addAllLinks();
-        },
-        error: function(){
-
-        }
-    });
-</script>
 </body>
 </html>

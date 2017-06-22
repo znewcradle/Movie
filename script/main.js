@@ -18,7 +18,7 @@ $(function () {
         localStorage.removeItem("token");
         localStorage.removeItem("name");
         localStorage.removeItem("token_type");
-        if(location.href.indexOf("personal") != -1){
+        if(location.href.indexOf("personal") === -1){
             location.reload();
         } else{
             window.location.href = "index.html";
@@ -277,11 +277,67 @@ $(function () {
     $("a#movie-top-search").click(function(){
         window.location.href = "top-movie.html";
     });
-    /************到homepage******************/
+    /************链接到homepage******************/
     $("span.user-name, span.user-profile").click(function(){
         window.location.href = "personal.html";
     });
+    /***********homepage 中的导航栏*************/
+    $("div.side-bar ul li").click(function(){
+        var content = $(this).text();
+        $("h3.panel-title a").each(function(){
+            if( $(this).text().indexOf(content) != -1){
+                $(this).click();
+            }
+        });
+    });
+
+     /****************************轮播技术**********************************************/
+    $("div.movie-ticket span.carousel-left").click(function(e){
+        var $current = $("div#movie-carousel div.active");
+        if($current.prev() && $current.prev().hasClass("item")){
+            $current.removeClass("active");
+            $current.hide();
+            $current.prev().addClass("active");
+            $current.prev().show();
+        }
+    });
+    $("div.movie-ticket span.carousel-right").click(function(){
+        var $current = $("div#movie-carousel div.active");
+        if($current.next() && $current.next().hasClass("item")){
+            $current.removeClass("active");
+            $current.hide();
+            $current.next().addClass("active");
+            $current.next().show();
+        }
+    });
+
+    /******************************增加影院座位**************************************/
+    var $theater = $("div.movie-theater");
+    for(var i = 0; i < 10; ++ i) {
+        for(var j = 0; j < 12; ++ j) {
+            var $seat = $("<div class='movie-seat'></div>");
+            $seat.attr("data-row", i);
+            $seat.attr("data-col", j);
+            $theater.append($seat);
+        }
+    }
+    $("div.movie-theater div.movie-seat").click(function(){
+        var row = $(this).data("row");
+        var col = $(this).data("col");
+        console.log(row + "  " + col);
+        $(this).css("background-color", "#F38994");
+    });
+    /********************************购票入口************************************/
+    $("#buy-ticket").click(function(){
+        if(localStorage.getItem("token") && localStorage.getItem("token_type")){
+            window.location.href = "buy-ticket.html";
+        } else{
+            alert("请先登录！");
+        }
+    });
 });
+
+/********************************************End of document loading****************************************/
 
  /**************点赞或者踩评论********************/
 function upReview(right) {
@@ -330,18 +386,17 @@ function upDown($right, option){
     });
 }
 
-/********************************************End of document loading****************************************/
-
 //loading effect
 function loadingEffect($loading) {
 
     $(document).ajaxStart(function () {
         $loading.show();
         $("div.main div[class^='movie-']").hide();
-
+        $("div.personal.main div[class^='movies-']").hide();
     }).ajaxStop(function () {
         $loading.hide();
         $("div.main div[class^='movie-']").show();
+        $("div.personal.main div[class^='movies-']").show();
     });
 }
 
@@ -435,17 +490,14 @@ function addMovieLinks() {
 
 //ajax to director
 function goToDirectors(dId) {
-    console.log(dId);
     window.location.href = connectURL("director.html", "directorId", dId);
 }
 //ajax to actor
 function goToAcotrs(aId) {
-    console.log(aId);
     window.location.href = connectURL("actor.html", "actorId", aId);
 }
 //ajax to movie
 function goToMovies(mId) {
-    console.log(mId);
     window.location.href = connectURL("movie.html", "movieId", mId);
 }
 

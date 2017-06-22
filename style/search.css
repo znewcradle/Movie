@@ -49,12 +49,19 @@ a#movie-type-search{
     left: 8.2rem;
     top: -2.4rem;
 }
+a#buy-ticket {
+    position: absolute;
+    left: 14rem;
+    top: 0;
+    width: 4rem;
+}
 
-div.header-search-bar{
+div.header.fixed-header div.header-search-bar{
     display: inline-block;
     position: absolute;
     left: 25%;
     top: 20%;
+    margin-left: 10.6rem;
 }
 div.header-user-entrance{
     float: right;

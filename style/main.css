@@ -218,22 +218,144 @@ span.log-out:hover{
 
 /***************************for the personal homepage*********************/
 div.personal.main div[class^="movies-"]{
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.6);
     width: 50%;
     left: 35%;
     position: relative;
 }
+div.personal.main div.panel-heading a{
+    color: #212121;
+    text-decoration: none;
+}
+div.personal.main div.panel.panel-default{
+    border: none;
+}
+div.personal.main div.panel-heading a:hover{
+    font-weight: bolder;
+}
+div.movies-collected div.panel-heading{
+    background-color: rgba(243, 137, 148, 0.36);
+}
+div.movies-scored div.panel-heading{
+    background-color: rgba(148, 243, 137, 0.36);
+}
+div.movies-reviewed div.panel-heading{
+    background-color: rgba(137, 148, 243, 0.36);
+}
+/*功能框*/
+div.side-bar{
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 2rem;
+    width: 15%;
+    position: fixed;
+    left: 18%;
+    display: inline-block;
+    top: 20rem;
+    font-size: 2.25rem;
+    color: #212121;
+    border-radius: 4.5%
+}
+div.side-bar ul{
+    padding: 0;
+}
 
+div.side-bar ul li{
+    list-style: none;
+    border-bottom: 2px dotted #eeeeee;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+div.side-bar ul li:nth-child(1):hover{
+    background-color: rgba(243, 137, 148, 0.2);
+}
+div.side-bar ul li:nth-child(2):hover{
+    background-color: rgba(148, 243, 137, 0.2);
+}
+div.side-bar ul li:nth-child(3):hover{
+    background-color: rgba(137, 148, 243, 0.2);
+}
 
+/************************personal homepage main content ******************/
+div.userstar{
+    display: inline-block;
+    margin-left: 3rem;
+}
+div.userstar ul{
+    padding: 0;
+    display: inline-block;
+}
+div#movies-scored div.allstar ul li{
+    color: #eea236;
+}
+div#movies-scored div.allstar ul li.full-empty-star svg{
+    fill: #eea236;
+}
 
-
-
-
-
-
-
-
-
+/*************************buy ticket page ***********************************/
+div.ticket.main{
+    top: 0;
+}
+div.ticket.main>div{
+    text-align: center;
+    background: none;
+    margin: 0 auto;
+}
+div#movie-carousel div.item{
+    width: 1000px;
+    height: 300px;
+    position: absolute;
+    top: 0;
+}
+h2.ticket-title{
+    position: absolute;
+    top: 40%;
+    left: 15%;
+    font-weight: bold;
+    font-size: 3rem;
+    color: #FFFFFF;
+}
+div.movie-ticket span[class^="carousel-"]{
+    display: inline-block;
+    width: 6.8rem;
+    height: 20rem;
+    background-color: rgba(33, 33, 33, 0.3);
+    position: fixed;
+    top: 8rem;
+     cursor: pointer;
+    border-radius: 5%;
+}
+div.movie-ticket span[class^="carousel-"] svg{
+    position: relative;
+    top: 8rem;
+    fill: rgba(255, 255, 255, 0.5);
+}
+div.movie-ticket span[class^="carousel-"]:hover svg{
+    fill: rgba(255, 255, 255, 0.9);
+}
+div.movie-ticket span.carousel-left{
+    left: 2rem;
+}
+div.movie-ticket span.carousel-right{
+    right: 2rem;
+}
+/************************影院座位**************************************************/
+div.movie-theater {
+    position: absolute;
+    width: 86%;
+    max-width: 1000px;
+    left: 10%;
+    top: 32rem;
+}
+div.movie-theater div.movie-seat{
+    padding: 0;
+    margin: 0.25rem 2rem;
+    width: 20px;
+    height: 20px;
+    background-color: #67b168;
+    float: left;
+    border: 1px solid #eeeeee;
+}
 
 
 
