@@ -15,7 +15,7 @@
     <link href="style/person.css" rel="stylesheet">
 </head>
 <body>
-    <div class="header fixed-header">
+<div class="header fixed-header">
     <div class="header-logo">
         <a href="index.html">
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
@@ -25,8 +25,20 @@
         </a>
     </div>
     <div class="header-navigation">
-        <a>TOP榜单</a>
-        <a>类型</a>
+        <a id="movie-top-search">TOP榜单</a>
+        <div class="movie-type-search">
+            <a id="movie-type-search">类型</a>
+            <div class="movie-dropdown-content" hidden>
+                <ul>
+                    <li id="Drama">Drama</li>
+                    <li id="Comedy">Comedy</li>
+                    <li id="Thriller">Thriller</li>
+                    <li id="Action">Action</li>
+                    <li id="Romance">Romance</li>
+                    <li id="Documentary">Documentary</li>
+                </ul>
+            </div>
+        </div>
     </div>
     <div class="header-search-bar">
         <div class="cntr">
@@ -56,9 +68,39 @@
         <span class="glyphicon glyphicon-log-out log-out"></span>
     </div>
 </div>
-    <!-- 用户名，打过分的电影，收藏的电影，评论过的电影-->
-    <div class="main">
 
-    </div>
+<!-- background image -->
+<div class="carousel-inner movie-background">
+        <div class="item active animated fadeInUp">
+            <img src="images/person.jpg" alt="personal homepage"/>
+        </div>
+</div>
+
+<div class="personal main">
+
+</div>
+
+<!-- 引入jQuery -->
+<script src="script/jquery.min.js"></script>
+<!-- 引入bootstrap.min.js -->
+<script src="script/bootstrap.min.js"></script>
+<!-- 引入自定义JS -->
+<script src="script/main.js"></script>
+<script>
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:1189/api/users/homepage',
+        data:{},
+        beforeSend: function (XMLHttpRequest) {
+                var token = localStorage.getItem("token");
+                var type = localStorage.getItem("token_type");
+                XMLHttpRequest.setRequestHeader("Authorization", type + " " + token);
+            },
+        success: function(data){
+            //console.log(data);
+        },
+        error: function(){}
+    });
+</script>
 </body>
 </html>

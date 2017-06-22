@@ -1025,7 +1025,21 @@ div.movie-dropdown-content ul li:hover{
 div.movie-type-search:hover div.movie-dropdown-content {
     display: block;
 }
-
+/*************************************for the top100 **********************/
+td.movie-ranking{
+    background: none;
+    position: absolute;
+    left: -16%;
+}
+td.movie-ranking svg{
+    fill: #a99987;
+}
+td.movie-ranking span{
+    position: relative;
+    top: -1.8rem;
+    font-size: 2.2rem;
+    color: #F38994;
+}
 
 
 

@@ -131,10 +131,14 @@ div.movie.main div.search-loading{
     padding: 0;
 }
 /****************for the collecting movie*************/
-div.collect-movie {
+div.movie.main div.collect-movie {
    position: absolute;
-    left: 70%;
-    bottom: 75%;
+    left: 62%;
+    top: 24%;
+    background: none;
+    margin: 0;
+    border: none;
+    box-shadow: none;
 }
 svg.collect-movie{
     width: 4rem;
@@ -146,8 +150,15 @@ svg.collect-movie:hover{
     transform: rotate(-270deg);
 }
 
-
-
+div.comment-footer span.glyphicon{
+    background-color: #31708f;
+    color: white;
+    border-radius: 0.1rem;
+    cursor: pointer;
+}
+div.comment-footer span.glyphicon:hover{
+    color: #eeeeee;
+}
 
 
 

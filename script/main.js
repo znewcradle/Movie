@@ -18,7 +18,11 @@ $(function () {
         localStorage.removeItem("token");
         localStorage.removeItem("name");
         localStorage.removeItem("token_type");
-        location.reload();
+        if(location.href.indexOf("personal") != -1){
+            location.reload();
+        } else{
+            window.location.href = "index.html";
+        }
     });
     /*************** 为search bar添加动态效果  **********/
     $("#inpt_search").on('focus', function () {
@@ -273,30 +277,59 @@ $(function () {
     $("a#movie-top-search").click(function(){
         window.location.href = "top-movie.html";
     });
-    /****************************collect movie******************************************/
-    $("div.collect-movie").click(function(){
-        var objKey = getParams();
-        var keyword = objKey["movieId"];
-        var  $svg = $("svg.collect-movie");
+    /************到homepage******************/
+    $("span.user-name, span.user-profile").click(function(){
+        window.location.href = "personal.html";
+    });
+});
 
-        $.ajax({
-            url: 'http://localhost:1189/api/movies/collect',
-            type: 'post',
-            data:{
-                movieId: keyword
-            },
-             beforeSend: function (XMLHttpRequest) {
+ /**************点赞或者踩评论********************/
+function upReview(right) {
+    var $right = $(right);
+    var option = 'up';
+     if($right.prop("reviewed")){
+        return;
+    }
+
+    $right.prop("reviewed", true);
+
+    upDown($right, option);
+}
+function downReview(right){
+    var $right = $(right);
+    var option = 'down';
+    if($right.prop("reviewed")){
+        return;
+    }
+    $right.prop("reviewed", true);
+    upDown($right, option);
+}
+function upDown($right, option){
+    var id = $right.parent().data("review");
+
+    $.ajax({
+        type: 'POST',
+        url: 'http://localhost:1189/api/reviews/updown?reviewId=' + id + '&updown=' + option,
+        data:{
+            reviewId: id,
+            upDown: option
+        },
+         beforeSend: function (XMLHttpRequest) {
                 var token = localStorage.getItem("token");
                 var type = localStorage.getItem("token_type");
                 XMLHttpRequest.setRequestHeader("Authorization", type + " " + token);
-            },
-            success:function(data){
-                $svg.attr("fill", "gold");
-            },
-            error: function(){}
-        });
+        },
+        success: function(data){
+            var $num = $right.prev();
+            $num.text(parseInt($num.text()) + 1);
+
+        },
+        error: function(){
+            alert("请登录");
+        }
     });
-});
+}
+
 /********************************************End of document loading****************************************/
 
 //loading effect
@@ -452,9 +485,36 @@ var searchByType = function (type) {
 }
 
 
+function dealWithInfoScore($starList, score) {
+    var fscore = Math.floor(score);
+    var over = Math.ceil(score);
+    var empty = 5;
 
+    for (var j = 0; j < fscore; ++j) {
+        $starList.append("<li class='glyphicon glyphicon-star'></li>");
+    }
+    if (fscore != 5) {
+        if (fscore !== over) {
+            var $empty_full = $('<li class="full-empty-star"></li>');
+            $empty_full.append(' <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1496747430879" class="icon" viewBox="0 0 1026 1024" version="1.1" p-id="1428" width="200.390625" height="200"><defs></defs><path d="M512.275763 112.128l112.64 228.352c11.776 24.064 34.816 40.96 61.44 44.544l252.416 36.864-182.784 178.176c-19.456 18.944-28.16 45.568-23.552 72.192l43.008 251.392-225.792-118.784c-11.776-6.144-24.576-9.216-37.888-9.216-13.312 0-26.112 3.072-37.888 9.216l-225.792 118.784 43.008-251.392c4.608-26.624-4.096-53.248-23.552-72.192L85.779763 421.888 338.195763 385.536c26.624-4.096 49.664-20.48 61.44-44.544L512.275763 112.128M512.275763 23.552c-9.728 0-19.456 5.12-24.576 15.36L350.995763 316.928c-4.096 8.192-11.776 13.824-20.48 14.848L23.315763 376.32c-22.528 3.072-31.232 30.72-14.848 46.08L230.675763 638.976c6.656 6.144 9.216 15.36 7.68 24.064l-52.224 305.664c-3.072 17.408 10.752 31.744 26.624 31.744 4.096 0 8.704-1.024 12.8-3.072l274.432-144.384c4.096-2.048 8.192-3.072 12.8-3.072 4.096 0 8.704 1.024 12.8 3.072l274.432 144.384c4.096 2.048 8.704 3.072 12.8 3.072 15.872 0 29.696-14.336 26.624-31.744l-52.224-305.664c-1.536-8.704 1.536-17.92 7.68-24.064l222.208-216.576c15.872-15.872 7.168-43.008-14.848-46.08l-306.688-44.544c-8.704-1.536-16.384-6.656-20.48-14.848L536.851763 38.912C531.731763 28.672 522.003763 23.552 512.275763 23.552L512.275763 23.552z" p-id="1429"/><path d="M487.699763 38.912 350.995763 316.928c-4.096 8.192-11.776 13.824-20.48 14.848L23.315763 376.32c-22.528 3.072-31.232 30.72-14.848 46.08L230.675763 638.976c6.656 6.144 9.216 15.36 7.68 24.064l-52.224 305.664c-3.584 22.016 19.456 38.912 39.424 28.672l274.432-144.384c4.096-2.048 7.168-3.072 12.8-3.072L512.787763 23.552C501.523763 23.552 492.819763 28.672 487.699763 38.912z" p-id="1430"/></svg>');
 
+            $starList.append($empty_full);
+            empty = 4;
+        }
+    }
+    for (var k = j; k < empty; ++k) {
+        $starList.append('<li class="glyphicon glyphicon-star-empty"></li>');
+    }
+}
 
+function dealWithReviewScore(reviews){
+    var $starList = $("div.comment-zone ul.allstar");
+
+    $starList.each(function(index){
+        var score = reviews[index].score;
+        dealWithInfoScore($(this), score);
+    });
+}
 
 
 
