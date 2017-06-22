@@ -1,6 +1,10 @@
 /**
  * Created by Xu on 2017/6/4.
  */
+
+/*****************************The url ***********************************************/
+var COMMON_URL = "http://localhost:1189/api/";
+
 $(function () {
     /******************检测用户是否登陆 *****************/
     var token = localStorage.getItem("token");
@@ -58,7 +62,7 @@ $(function () {
     var login = function (name, pwd) {
         $.ajax({
             type: 'post',
-            url: 'http://localhost:1189/api/token',
+            url: COMMON_URL + 'token',
             data: {
                 userName: name,
                 password: pwd,
@@ -114,7 +118,7 @@ $(function () {
 
         $.ajax({
             type: 'post',
-            url: 'http://localhost:1189/api/account/register',
+            url: COMMON_URL +  'account/register',
             data: {
                 userName: name,
                 password: pwd,
@@ -166,7 +170,7 @@ $(function () {
 
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:1189/api/reviews/create',
+            url: COMMON_URL +  'reviews/create',
             data: {
                 movieId: keyword,
                 Description: review_text
@@ -198,7 +202,7 @@ $(function () {
         var keyword = objKey["movieId"];
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:1189/api/movies/score?movieId=' + keyword + "&score=" + len,
+            url: COMMON_URL +  'movies/score?movieId=' + keyword + "&score=" + len,
             data: {
                 movieId: keyword,
                 score: len
@@ -217,7 +221,7 @@ $(function () {
                 }
             },
             error: function () {
-                alert("error in server");
+                alert("请先登陆！");
             }
         });
     });
@@ -235,7 +239,7 @@ $(function () {
 
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:1189/api/movies/score?movieId=' + keyword + '&score=' + len,
+            url: COMMON_URL +  'movies/score?movieId=' + keyword + '&score=' + len,
             data: {
                 movieId: keyword,
                 score: len
@@ -365,7 +369,7 @@ function upDown($right, option){
 
     $.ajax({
         type: 'POST',
-        url: 'http://localhost:1189/api/reviews/updown?reviewId=' + id + '&updown=' + option,
+        url: COMMON_URL +  'reviews/updown?reviewId=' + id + '&updown=' + option,
         data:{
             reviewId: id,
             upDown: option
@@ -507,7 +511,7 @@ var searchByType = function (type) {
     }
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:1189/api/movies/genres',
+        url:  COMMON_URL + 'movies/genres',
         data: {
             genre: type
         },

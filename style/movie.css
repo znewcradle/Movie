@@ -19,6 +19,12 @@ div.movie-info>div{
 div.movie-info div.img-poster {
     padding-right: 4%;
 }
+div.movie-info div.img-poster img{
+    width: 150px;
+    height: 220px;
+    max-width: 200px;
+    max-height: 270px;
+}
 div.movie-info div{
     margin-top: 1.5rem;
 }
@@ -87,6 +93,12 @@ div.recommend-movie a{
 }
 div.recommend-movie td{
     padding: 0.1rem 2.5rem;
+}
+div.recommend-movie td img{
+     width: 70px;
+    height: 90px;
+    max-width: 100px;
+    max-height: 125px;
 }
 div.recommend-movie a:hover{
     text-decoration: underline;

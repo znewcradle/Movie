@@ -78,13 +78,12 @@
 </div>
 
 <div class="movie main">
-  <!-- loading effect -->
-
+    <!-- loading effect -->
     <div class="movie-info">
         <h1>{{ name }}</h1>
         <div>
             <div class="img-poster">
-                <img v-bind:src="{{ picUrl }}"/>
+                <img  v-bind:src="picUrl" />
             </div>
             <div class="info">
                 <ul>
@@ -330,7 +329,7 @@
     //get movie info
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:1189/api/movies',
+        url: COMMON_URL +  'movies',
         data: {
             movieId: keyword
         },
@@ -375,7 +374,7 @@
     //get the similar movies
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:1189/api/movies/similar',
+        url:  COMMON_URL + 'movies/similar',
         data: {
             movieId: keyword
         },
@@ -413,7 +412,7 @@
     //get the reviews
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:1189/api/reviews',
+        url:  COMMON_URL + 'reviews',
         data:{
             movieId: keyword
         },
@@ -434,7 +433,7 @@
     });
      //get the user score
      $.ajax({
-         url: 'http://localhost:1189/api/movies/userscore',
+         url: COMMON_URL + 'movies/userscore',
          type:'GET',
          data:{
              movieId: keyword
@@ -471,7 +470,7 @@
         }
 
         $.ajax({
-            url: 'http://localhost:1189/api/movies/collect?movieId=' + keyword,
+            url: COMMON_URL + 'movies/collect?movieId=' + keyword,
             type: 'POST',
             data:{
                 movieId: keyword
@@ -482,6 +481,7 @@
                 XMLHttpRequest.setRequestHeader("Authorization", type + " " + token);
             },
             success:function(data){
+                console.log(data);
                 $svg.css("fill", "gold");
                 $svg.prop("collected", true);
             },

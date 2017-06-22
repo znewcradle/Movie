@@ -241,7 +241,7 @@
     var keyword = objKey["directorId"];
     $.ajax({
         type: 'get',
-        url: 'http://localhost:1189/api/directors',
+        url: COMMON_URL +  'directors',
         data: {
             directorId: keyword
         },

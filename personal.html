@@ -329,7 +329,7 @@
 
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:1189/api/users/homepage',
+        url: COMMON_URL + 'users/homepage',
         data:{},
         beforeSend: function (XMLHttpRequest) {
                 var token = localStorage.getItem("token");

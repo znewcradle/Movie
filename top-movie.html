@@ -241,7 +241,7 @@
 
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:1189/api/movies/top100',
+        url: COMMON_URL +  'movies/top100',
         data:{},
         success: function(data){
            var movies = data;

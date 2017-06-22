@@ -221,6 +221,12 @@ table.movie td.poster{
     height: 150px;
     padding: 1rem;
 }
+table.movie td.poster img{
+    width: 80px;
+    height: 120px;
+    max-width: 100px;
+    max-height: 145px;
+}
 table.movie span.movie-title, table.movie span.person-title {
     font-size: 1.875rem;
 }
