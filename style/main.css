@@ -301,6 +301,9 @@ div.ticket.main>div{
     background: none;
     margin: 0 auto;
 }
+div#movie-carousel {
+    margin-left: 7.5rem;
+}
 div#movie-carousel div.item{
     width: 1000px;
     height: 300px;
@@ -344,7 +347,7 @@ div.movie-theater {
     position: absolute;
     width: 86%;
     max-width: 1000px;
-    left: 10%;
+    left: 15%;
     top: 32rem;
 }
 div.movie-theater div.movie-seat{
@@ -356,7 +359,11 @@ div.movie-theater div.movie-seat{
     float: left;
     border: 1px solid #eeeeee;
 }
-
+button.btn.btn-default.ticket {
+    position: relative;
+    left: 75%;
+    top: 42rem;
+}
 
 
 

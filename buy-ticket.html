@@ -73,25 +73,28 @@
 <div class="ticket main">
     <div class="movie-ticket">
         <span class="carousel-left">
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><path d="M30.83 32.67l-9.17-9.17 9.17-9.17L28 11.5l-12 12 12 12z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><path
+                    d="M30.83 32.67l-9.17-9.17 9.17-9.17L28 11.5l-12 12 12 12z"/></svg>
         </span>
         <div id="movie-carousel" class="carousel slide">
-            <div class="item">
+            <div class="item" data-ticket="1">
                 <h2 class="ticket-title">《异形·契约》</h2>
                 <img src="images/tiket1.jpg" alt="first"/>
             </div>
-            <div class="item active" >
+            <div class="item active" data-ticket="2">
                 <h2 class="ticket-title">《变形金刚5·最后的骑士》</h2>
                 <img src="images/tiket2.jpg" alt="second"/>
             </div>
         </div>
         <span class="carousel-right">
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><path d="M17.17 32.92l9.17-9.17-9.17-9.17L20 11.75l12 12-12 12z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><path
+                    d="M17.17 32.92l9.17-9.17-9.17-9.17L20 11.75l12 12-12 12z"/></svg>
         </span>
     </div>
     <div class="movie-theater">
 
     </div>
+    <button class="btn btn-default ticket">购票</button>
 </div>
 
 <!-- BEGIN: modal -->
@@ -168,5 +171,30 @@
 <script src="script/bootstrap.min.js"></script>
 <!-- 引入自定义JS -->
 <script src="script/main.js"></script>
+
+<script>
+    //获取当前已购买的票
+    var objKey = getParams();
+
+    if (objKey['id']) {
+        var id = objKey['id'];
+        id = parseInt(id);
+        $("div#movie-carousel div.item").each(function () {
+            if ($(this).data("ticket") === id) {
+                $(this).show();
+                $(this).addClass("active");
+            } else {
+                $(this).hide();
+                $(this).removeClass().addClass("item");
+            }
+        });
+    } else{
+        var id = $("div#movie-carousel div.item.active").data("ticket");
+    }
+
+    getTicketsInfo(id);
+
+    getUserTickets(id);
+</script>
 </body>
 </html>

@@ -47,7 +47,7 @@ div.header-navigation a {
 a#movie-type-search{
     position: relative;
     left: 8.2rem;
-    top: -2.4rem;
+    top: -2.3rem;
 }
 a#buy-ticket {
     position: absolute;
@@ -164,10 +164,16 @@ div.heading.user-entrance.after-login span.user-profile svg{
 /***********************************************************
 for the background
  **********************************************************/
-div.carousel-inner div.item{
+div.carousel-inner.movie-background div.item{
     position: fixed;
     top: 0;
     left: 0;
+    width: 1580px;
+    height: 800px;
+}
+div.carousel-inner.movie-background div.item img{
+    width: 1580px;
+    height: 800px;
 }
 
 /**********************************************

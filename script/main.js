@@ -3,7 +3,7 @@
  */
 
 /*****************************The url ***********************************************/
-var COMMON_URL = "http://localhost:1189/api/";
+var COMMON_URL = "http://localhost:8001/api/";
 
 $(function () {
     /******************检测用户是否登陆 *****************/
@@ -22,7 +22,7 @@ $(function () {
         localStorage.removeItem("token");
         localStorage.removeItem("name");
         localStorage.removeItem("token_type");
-        if(location.href.indexOf("personal") === -1){
+        if(location.href.indexOf("personal") === -1 && location.href.indexOf("buy-ticket") === -1){
             location.reload();
         } else{
             window.location.href = "index.html";
@@ -303,6 +303,8 @@ $(function () {
             $current.hide();
             $current.prev().addClass("active");
             $current.prev().show();
+            getTicketsInfo($current.prev().data("ticket"));
+            getUserTickets($current.prev().data("ticket"));
         }
     });
     $("div.movie-ticket span.carousel-right").click(function(){
@@ -312,25 +314,11 @@ $(function () {
             $current.hide();
             $current.next().addClass("active");
             $current.next().show();
+            getTicketsInfo($current.next().data("ticket"));
+            getUserTickets($current.next().data("ticket"));
         }
     });
 
-    /******************************增加影院座位**************************************/
-    var $theater = $("div.movie-theater");
-    for(var i = 0; i < 10; ++ i) {
-        for(var j = 0; j < 12; ++ j) {
-            var $seat = $("<div class='movie-seat'></div>");
-            $seat.attr("data-row", i);
-            $seat.attr("data-col", j);
-            $theater.append($seat);
-        }
-    }
-    $("div.movie-theater div.movie-seat").click(function(){
-        var row = $(this).data("row");
-        var col = $(this).data("col");
-        console.log(row + "  " + col);
-        $(this).css("background-color", "#F38994");
-    });
     /********************************购票入口************************************/
     $("#buy-ticket").click(function(){
         if(localStorage.getItem("token") && localStorage.getItem("token_type")){
@@ -338,6 +326,47 @@ $(function () {
         } else{
             alert("请先登录！");
         }
+    });
+    /********************购票***********************************/
+    $("button.ticket").click(function () {
+        var id = $("div#movie-carousel div.item.active").data("ticket");
+        var ticket_arr = [];
+        $("div.movie-theater div.movie-seat.chosen").each(function(){
+            var row = $(this).data("row");
+            var col = $(this).data("col");
+
+            ticket_arr.push([row, col]);
+        });
+        if(ticket_arr.length === 0){
+            alert("购票失败");
+            return;
+        }
+
+        $.ajax({
+            url: COMMON_URL + 'tickets/buy',
+            method: 'POST',
+             beforeSend: function (XMLHttpRequest) {
+                var token = localStorage.getItem("token");
+                var type = localStorage.getItem("token_type");
+                XMLHttpRequest.setRequestHeader("Authorization", type + " " + token);
+        },
+            data:{
+                movieId: id,
+                tickets: ticket_arr
+            },
+            success: function(data){
+                if(data){
+                    alert("购票成功！");
+                    location.href = "buy-ticket.html?id=" + id;
+                } else{
+                    alert("所选票已经被抢先购买，购票失败！");
+                }
+
+            },
+            error: function(){
+                alert("购票失败！");
+            }
+        });
     });
 });
 
@@ -572,11 +601,91 @@ function dealWithReviewScore(reviews){
     });
 }
 
+/******************************增加影院座位点击动作**************************************/
+function addSeatClick(){
+    $("div.movie-theater div.movie-seat").click(function(){
+        var row = $(this).data("row");
+        var col = $(this).data("col");
+        if($(this).hasClass("bought")){
+            alert("该座位已被购买！");
+            return;
+        }
+        if($(this).hasClass("chosen")){
+            $(this).removeClass("chosen");
+            $(this).css("background-color", "#67b168");
+        } else{
+            $(this).addClass("chosen");
+            $(this).css("background-color", "#e6bb5c");
+        }
+    });
+}
 
+//获取当前电影票的情况
+function getTicketsInfo(id){
+    console.log(id);
+    $.ajax({
+        url: COMMON_URL + 'tickets/current',
+        method: 'GET',
+        data:{
+            movieId: id
+        },
+         beforeSend: function (XMLHttpRequest) {
+                var token = localStorage.getItem("token");
+                var type = localStorage.getItem("token_type");
+                XMLHttpRequest.setRequestHeader("Authorization", type + " " + token);
+        },
+        success: function(data){
+            console.log(data);
 
+            var $theater = $("div.movie-theater");
+            $theater.empty();
+            for (var i = 0; i < 10; ++i) {
+                for (var j = 0; j < 12; ++j) {
+                    var $seat = $("<div class='movie-seat'></div>");
+                    $seat.attr("data-row", i);
+                    $seat.attr("data-col", j);
+                    $theater.append($seat);
+                }
+            }
+            for (var k = 0; k < data.length; ++k) {
+                var row = data[k][0];
+                var col = data[k][1];
+                var index = row * 12 + col + 1;
+                $("div.movie-theater div.movie-seat:nth-child(" + index + ")").css("background-color", "#F38994").addClass("bought");
+            }
+            addSeatClick();
+        },
+        error: function(){}
+    });
+}
 
-
-
+/******************************获取用户当前购买的票****************************************/
+function getUserTickets(id){
+     $.ajax({
+        url: COMMON_URL + 'tickets',
+        method: 'GET',
+        data: {},
+        beforeSend: function (XMLHttpRequest) {
+                var token = localStorage.getItem("token");
+                var type = localStorage.getItem("token_type");
+                XMLHttpRequest.setRequestHeader("Authorization", type + " " + token);
+        },
+        success: function(data){
+            for(var i = 0; i < data.length; ++ i){
+                var ticket = data[i];
+                var row = -1;
+                var col = -1;
+                if(ticket.movieId === id){
+                    row = ticket.row;
+                    col = ticket.column;
+                    var index = col * 12  + row + 1;
+                    $("div.movie-theater div.movie-seat:nth-child(" + index + ")").css("border", "2px solid black");
+                }
+            }
+        },
+        error: function(){}
+    });
+}
 
 
 
